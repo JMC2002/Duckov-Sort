@@ -1,4 +1,6 @@
-﻿# Sorting by Weight/Value/Value-to-Weight Ratio
+﻿**[ [中文](./README_zh.md) | English ]**
+
+# Sorting by Weight/Value/Value-to-Weight Ratio
 ## 0. Installation
 
 For the Steam version, you can simply subscribe through the Steam Workshop: [Steam Workshop](https://steamcommunity.com/sharedfiles/filedetails/?id=3592004817)
