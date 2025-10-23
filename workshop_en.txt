@@ -1,0 +1,32 @@
+﻿// Generated with the help of GPT
+
+[h1] Sorting by Weight/Value/Value-to-Weight Ratio [/h1]
+
+[h2] 1. Introduction [/h2]
+After playing the game for a while, I wanted to sort items by price or weight to make it easier to throw away junk. After waiting for several days without anyone creating this mod, I decided to make it myself.
+[url=https://github.com/JMC2002/Duckov-Sort] GitHub Link [/url]
+[url=https://www.bilibili.com/video/BV1uBsBzMEm4/?vd_source=a23dec0dc1d809e1d014dd2f9135e10b] Demo Video (Bilibili) [/url]
+
+[h2] 2. Features [/h2]
+A new row of sorting options appears below the "Sort" button in both the backpack and warehouse, allowing you to sort by price, weight, or value-to-weight ratio.
+
+[h2] 3. Notes [/h2]
+[list]
+    [*] The mod comes with a feature that displays item prices. This may conflict with other mods that display item prices. If you have both enabled, the price will be displayed twice. It is recommended to disable other price-display mods. I may consider adding a toggle option for this feature in the future.
+    [*] The localization texts (including buttons and README) for this mod, except for the Chinese language, were generated with the help of automatic translation. Contributions for text improvements are welcome. You can submit a PR or leave a comment.
+[/list]
+
+[h2] 4. Compatibility [/h2]
+[list]
+    [*] This mod involves UI changes. Mods that heavily modify the UI may conflict with this one.
+    [*] This mod uses the Harmony framework. Other mods that conflict with Harmony might cause issues with this mod.
+[/list]
+
+[h2] 5. TODO [/h2]
+[list]
+    [*] Currently, the mod sorts in descending order by default. I may add an ascending/descending toggle button in the future.
+    [*] The UI is quite basic at the moment and may be improved in the future.
+    [*] A configuration menu may be added to quickly enable/disable certain features.
+    [*] The code is a bit rough at the moment and will likely be optimized in the future.
+    [*] The sorting seems a bit slow, and I will look into performance optimization later.
+[/list]
