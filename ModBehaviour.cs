@@ -41,8 +41,8 @@ namespace DuckSort
                 case SystemLanguage.Japanese:
                     return buttonType switch
                     {
-                        "Value" => "価値",
-                        "Weight" => "重量",
+                        "Value" => "価値順",
+                        "Weight" => "重量順",
                         "Ratio" => "価値/重量順",
                         _ => buttonType
                     };
