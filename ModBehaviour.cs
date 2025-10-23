@@ -205,9 +205,13 @@ namespace DuckSort
                     return;
                 }
 
-                // 防止重复创建
-                if (__instance.transform.Find("DuckSort_Container") != null)
-                    return;
+                var container = __instance.transform.Find("DuckSort_Container");
+                if (container != null)
+                {
+                    // 如果已有按钮容器，先删除
+                    UnityEngine.Object.Destroy(container.gameObject);
+                }
+
 
                 var sortRect = sortBtn.GetComponent<RectTransform>();
                 var parentRect = sortRect.parent.GetComponent<RectTransform>();
@@ -249,6 +253,11 @@ namespace DuckSort
                     Debug.Log("[DuckSort] 点击 按价值");
                     SortInventory(inventory, GetSortByValueComparison());
                 });
+                //CreateButton(newRowRT, sortBtn, ValueLabel, () =>
+                //{
+                //    Debug.Log("[DuckSort] 点击 按价值");
+                //    SortInventory(inventory, GetSortByValueComparison());
+                //});
 
                 CreateButton(newRowRT, sortBtn, WeightLabel, () =>
                 {
