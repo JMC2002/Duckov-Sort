@@ -1,6 +1,6 @@
-# 更多排序
+# 按重量/价值/价重比排序
 ## 0. 安装
-Steam版本直接在创意工坊订阅即可，地址：[创意工坊](还没发)
+Steam版本直接在创意工坊订阅即可，地址：[创意工坊](https://steamcommunity.com/sharedfiles/filedetails/?id=3592004817)
 
 其他版本可以自行编译，或者下载DuckSort.zip后解压到游戏安装目录下的Mods
 目录下（没有就新建一个），文件结构如下：
