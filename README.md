@@ -1,4 +1,4 @@
-**[ 中文 | [English](./README_en.md) ]**
+**[ 中文 | [English](README_en.md) ]**
 # 按重量/价值/价重比排序
 ## 0. 安装
 Steam版本直接在创意工坊订阅即可，地址：[创意工坊](https://steamcommunity.com/sharedfiles/filedetails/?id=3592004817)

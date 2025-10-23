@@ -1,4 +1,4 @@
-﻿**[ [中文](./README_zh.md) | English ]**
+﻿**[ [中文](README.md) | English ]**
 
 # Sorting by Weight/Value/Value-to-Weight Ratio
 ## 0. Installation
