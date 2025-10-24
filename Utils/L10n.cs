@@ -13,81 +13,81 @@ namespace DuckSort.Utils
                 case SystemLanguage.ChineseSimplified:
                     return buttonType switch
                     {
-                        "Value" => "按价值",
-                        "Weight" => "按重量",
-                        "Ratio" => "按价重比",
+                        "按价值"   => "按价值",
+                        "按重量"   => "按重量",
+                        "按价重比" => "按价重比",
                         _ => buttonType
                     };
 
                 case SystemLanguage.ChineseTraditional:
                     return buttonType switch
                     {
-                        "Value" => "按價值",
-                        "Weight" => "按重量",
-                        "Ratio" => "按價重比",
+                        "按价值"   => "按價值",
+                        "按重量"   => "按重量",
+                        "按价重比" => "按價重比",
                         _ => buttonType
                     };
 
                 case SystemLanguage.Japanese:
                     return buttonType switch
                     {
-                        "Value" => "価値順",
-                        "Weight" => "重量順",
-                        "Ratio" => "価値/重量順",
+                        "按价值"   => "価値順",
+                        "按重量"   => "重量順",
+                        "按价重比" => "価値/重量順",
                         _ => buttonType
                     };
 
                 case SystemLanguage.German:
                     return buttonType switch
                     {
-                        "Value" => "Wert",
-                        "Weight" => "Gewicht",
-                        "Ratio" => "W/G",
+                        "按价值"   => "Wert",
+                        "按重量"   => "Gewicht",
+                        "按价重比" => "W/G",
                         _ => buttonType
                     };
 
                 case SystemLanguage.Russian:
                     return buttonType switch
                     {
-                        "Value" => "Ценность",
-                        "Weight" => "Вес",
-                        "Ratio" => "Ц/В",
+                        "按价值"   => "Ценность",
+                        "按重量"   => "Вес",
+                        "按价重比" => "Ц/В",
                         _ => buttonType
                     };
 
                 case SystemLanguage.Spanish:
                     return buttonType switch
                     {
-                        "Value" => "Valor",
-                        "Weight" => "Peso",
-                        "Ratio" => "V/P",
+                        "按价值"   => "Valor",
+                        "按重量"   => "Peso",
+                        "按价重比" => "V/P",
                         _ => buttonType
                     };
 
                 case SystemLanguage.Korean:
                     return buttonType switch
                     {
-                        "Value" => "가치",
-                        "Weight" => "무게",
-                        "Ratio" => "가/무",
+                        "按价值"   => "가치",
+                        "按重量"   => "무게",
+                        "按价重比" => "가/무",
                         _ => buttonType
                     };
 
                 case SystemLanguage.French:
                     return buttonType switch
                     {
-                        "Value" => "Valeur",
-                        "Weight" => "Poids",
-                        "Ratio" => "V/P",
+                        "按价值"   => "Valeur",
+                        "按重量"   => "Poids",
+                        "按价重比" => "V/P",
                         _ => buttonType
                     };
 
                 case SystemLanguage.Portuguese:
                     return buttonType switch
                     {
-                        "Value" => "Valor",
-                        "Weight" => "Peso",
-                        "Ratio" => "V/P",
+                        "按价值"   => "Valor",
+                        "按重量"   => "Peso",
+                        "按价重比" => "V/P",
                         _ => buttonType
                     };
 
@@ -95,9 +95,9 @@ namespace DuckSort.Utils
                 default:
                     return buttonType switch
                     {
-                        "Value" => "Value",
-                        "Weight" => "Weight",
-                        "Ratio" => "Val/Weight",
+                        "按价值"   => "Value",
+                        "按重量"   => "Weight",
+                        "按价重比" => "Val/Weight",
                         _ => buttonType
                     };
             }
