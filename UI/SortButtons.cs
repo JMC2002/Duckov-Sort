@@ -15,7 +15,7 @@ namespace DuckSort.UI
         {
             ("按价格", (a, b) => b.GetTotalRawValue().CompareTo(a.GetTotalRawValue())),
             ("按重量", (a, b) => b.TotalWeight.CompareTo(a.TotalWeight)),
-            ("按性价比", (a, b) =>
+            ("按价重比", (a, b) =>
                     {
                         float ratioA = a.GetTotalRawValue() / Math.Max(a.TotalWeight, 0.001f);
                         float ratioB = b.GetTotalRawValue() / Math.Max(b.TotalWeight, 0.001f);
