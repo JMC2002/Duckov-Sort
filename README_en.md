@@ -1,4 +1,4 @@
-﻿> Note: The English page is translated by GPT and may not be updated in a timely manner. The latest version is based on the Chinese page.
+﻿> Note: The English page is translated by GPT and may not be updated in a timely manner. The latest version is based on the Chinese page. The DLL in the project folder is also the latest version, but it may not be usable during the development stage.
 
 **🌐[ [中文](README.md) | English ]**
     
