@@ -23,6 +23,6 @@
     <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
   </ItemGroup>
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-    <Exec Command="copy &quot;$(TargetPath)&quot; &quot;D:\SteamLibrary\steamapps\common\Escape from Duckov\Duckov_Data\Mods\DuckSort\&quot;" />
+    <Exec Command="copy &quot;$(TargetPath)&quot; &quot;D:\SteamLibrary\steamapps\common\Escape from Duckov\Duckov_Data\Mods\DuckSort\&quot;&#xD;&#xA;copy &quot;$(TargetPath)&quot; &quot;C:\Users\JMC\source\repos\DuckSort\DuckSort\&quot;" />
   </Target> 
 </Project>
