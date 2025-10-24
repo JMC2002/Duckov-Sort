@@ -10,6 +10,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using DuckSort.Core;
 using DuckSort.Utils;
+using DuckSort.UI;
 
 namespace DuckSort.Patches
 {
@@ -43,7 +44,6 @@ namespace DuckSort.Patches
                     UnityEngine.Object.Destroy(container.gameObject);
                 }
 
-
                 var sortRect = sortBtn.GetComponent<RectTransform>();
                 var parentRect = sortRect.parent.GetComponent<RectTransform>();
                 var grandParent = parentRect.parent.GetComponent<RectTransform>();
@@ -73,144 +73,17 @@ namespace DuckSort.Patches
                 var height = sortRect.rect.height;
                 newRowRT.anchoredPosition = parentRect.anchoredPosition - new Vector2(0, height + 8f);
 
-                var ValueLabel = L10n.GetLabel("Value");
-                var WeightLabel = L10n.GetLabel("Weight");
-                var RatioLabel = L10n.GetLabel("Ratio");
+                var ValueLabel = L10n.GetLabel("按价值");
+                var WeightLabel = L10n.GetLabel("按重量");
+                var RatioLabel = L10n.GetLabel("按价重比");
 
                 var inventory = __instance.Target;
-
-                // 创建三个排序按钮
-                CreateButton(newRowRT, sortBtn, ValueLabel, () =>
-                {
-                    ModLogger.Info($"点击 {ValueLabel}");
-                    SortInventory(inventory, GetSortByValueComparison());
-                });
-
-                CreateButton(newRowRT, sortBtn, WeightLabel, () =>
-                {
-                    ModLogger.Info($"点击 {WeightLabel}");
-                    SortInventory(inventory, GetSortByWeightComparison());
-                });
-
-                CreateButton(newRowRT, sortBtn, RatioLabel, () =>
-                {
-                    ModLogger.Info($"点击 {RatioLabel}");
-                    SortInventory(inventory, GetSortByRatioComparison());
-                });
-                ModLogger.Info("成功在整理按钮正下方新增一行三个按钮。");
+                var sb = new SortButtons(newRowRT, sortBtn, inventory);
             }
             catch (Exception ex)
             {
                 ModLogger.Error("创建按钮失败 ", ex);
             }
-        }
-
-        static void CreateButton(RectTransform containerRT, Button templateButton, string label, UnityEngine.Events.UnityAction onClick)
-        {
-            var newGO = UnityEngine.Object.Instantiate(templateButton.gameObject, containerRT);
-            newGO.name = $"{VersionInfo.Name}Btn_" + label;
-
-            TMP_Text tmp = newGO.GetComponentInChildren<TMP_Text>(true);
-            if (tmp != null)
-                tmp.text = label;
-            else
-            {
-                var legacy = newGO.GetComponentInChildren<UnityEngine.UI.Text>(true);
-                if (legacy != null)
-                    legacy.text = label;
-            } 
-
-            var btn = newGO.GetComponent<Button>();
-            btn.onClick.RemoveAllListeners();
-            btn.onClick.AddListener(onClick);
-
-            newGO.SetActive(true);
-        }
-
-        private static void SortInventory(Inventory inventory, Comparison<Item> comparison)
-        {
-            // 判断是否正在加载，防止重复操作
-            if (inventory.Loading)
-            {
-                return;
-            }
-
-            inventory.Loading = true;
-
-            var content = ReflectionHelper.GetFieldValue<List<Item>>(inventory, "content");
-            if (content == null)
-            {
-                ModLogger.Warn("无法获取 Inventory.content，排序失败");
-                inventory.Loading = false;
-                return;
-            }
-
-            // 先筛选掉被锁定的 Item，并将其加入 list
-            List<Item> list = new List<Item>();
-            for (int i = 0; i < content.Count; i++)
-            {
-                if (!inventory.IsIndexLocked(i))
-                {
-                    Item item = content[i];
-                    if (item != null)
-                    {
-                        item.Detach();
-                        list.Add(item);
-                    }
-                }
-            }
-
-            // 按 TypeID 分组，并进行 TryMerge 操作
-            List<IGrouping<int, Item>> groupedItems = list.GroupBy(item => item.TypeID).ToList();
-
-            var sortedItems = new List<Item>();
-
-            foreach (var group in groupedItems)
-            {
-                // 使用反射调用 TryMerge
-                var args = new object[] { group, null! };
-                bool success = ReflectionHelper.CallStaticMethodWithOut(
-                    typeof(Inventory),
-                    "TryMerge",
-                    args,
-                    out List<Item>? mergedItems
-                );
-
-                // 如果合并成功，添加到 sortedItems
-                sortedItems.AddRange(mergedItems ?? group.ToList());
-            }
-
-            // 根据 Comparison 排序
-            sortedItems.Sort(comparison);
-            foreach (var item in sortedItems)
-            {
-                inventory.AddItem(item);
-            }
-
-            inventory.Loading = false;
-            // 通过反射获取事件的委托，并手动调用
-            var eventDelegate = ReflectionHelper.GetFieldValue<Action<Inventory>>(inventory, "onInventorySorted");
-            eventDelegate?.Invoke(inventory);
-        }
-
-        private static Comparison<Item> GetSortByValueComparison()
-        {
-            return (a, b) => b.GetTotalRawValue().CompareTo(a.GetTotalRawValue());
-        }
-
-        private static Comparison<Item> GetSortByWeightComparison()
-        {
-            return (a, b) => b.TotalWeight.CompareTo(a.TotalWeight);
-        }
-
-        private static Comparison<Item> GetSortByRatioComparison()
-        {
-            return (a, b) =>
-            {
-                float ratioA = a.GetTotalRawValue() / Math.Max(a.TotalWeight, 0.001f);
-                float ratioB = b.GetTotalRawValue() / Math.Max(b.TotalWeight, 0.001f);
-                return ratioB.CompareTo(ratioA);
-            };
         }
     }
 }
