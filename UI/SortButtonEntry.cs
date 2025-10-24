@@ -130,7 +130,12 @@ namespace DuckSort.UI
             }
 
             // 根据 Comparison 排序
-            sortedItems.Sort(comparison);
+            sortedItems.Sort((a, b) =>
+            {
+                int result = comparison(a, b);                            // 先按原有规则排序
+                return result != 0 ? result : a.Order.CompareTo(b.Order); // 若相等则按 Order 比较，保证相同的 Item 放一起
+            });
+
             foreach (var item in sortedItems)
             {
                 inventory.AddItem(item);
