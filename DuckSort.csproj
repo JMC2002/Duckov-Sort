@@ -8,6 +8,7 @@
     <DuckovPath>D:\SteamLibrary\steamapps\common\Escape from Duckov</DuckovPath>
     <UserSecretsId>f9477a73-4a2b-4aeb-8b14-adb1e9f9c33e</UserSecretsId>
     <OutputType>Library</OutputType>
+    <BaseOutputPath></BaseOutputPath>
   </PropertyGroup>
   <ItemGroup>
         <Reference Include="$(DuckovPath)\Duckov_Data\Managed\TeamSoda.*" />
@@ -20,5 +21,8 @@
   <ItemGroup>
     <PackageReference Include="Lib.Harmony" Version="2.4.1" />
     <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
-  </ItemGroup> 
+  </ItemGroup>
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="copy &quot;$(TargetPath)&quot; &quot;D:\SteamLibrary\steamapps\common\Escape from Duckov\Duckov_Data\Mods\DuckSort\&quot;" />
+  </Target> 
 </Project>
