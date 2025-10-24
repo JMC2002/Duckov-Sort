@@ -7,7 +7,7 @@ namespace DuckSort.Utils
 {
     public static class ReflectionHelper
     {
-        // 🔒 缓存区（线程安全）
+        // 缓存区（线程安全）
         private static readonly ConcurrentDictionary<(Type, string), FieldInfo?> _fieldCache = new();
         private static readonly ConcurrentDictionary<(Type, string), MethodInfo?> _methodCache = new();
 
@@ -20,7 +20,7 @@ namespace DuckSort.Utils
         {
             if (obj == null)
             {
-                ModLogger.Warn($"GetFieldValue<{typeof(T).Name}> 失败：obj 为 null");
+                ModLogger.Error($"GetFieldValue<{typeof(T).Name}> 失败：obj 为 null");
                 return default;
             }
 
@@ -30,7 +30,7 @@ namespace DuckSort.Utils
 
             if (field == null)
             {
-                ModLogger.Warn($"在 {type.Name} 中找不到字段 {fieldName}");
+                ModLogger.Error($"在 {type.Name} 中找不到字段 {fieldName}");
                 return default;
             }
 
@@ -45,7 +45,7 @@ namespace DuckSort.Utils
         {
             if (obj == null)
             {
-                ModLogger.Warn($"SetFieldValue 失败：obj 为 null");
+                ModLogger.Error($"SetFieldValue 失败：obj 为 null");
                 return;
             }
 
@@ -55,7 +55,7 @@ namespace DuckSort.Utils
 
             if (field == null)
             {
-                ModLogger.Warn($"在 {type.Name} 中找不到字段 {fieldName}");
+                ModLogger.Error($"在 {type.Name} 中找不到字段 {fieldName}");
                 return;
             }
 
@@ -71,7 +71,7 @@ namespace DuckSort.Utils
         {
             if (obj == null)
             {
-                ModLogger.Warn($"CallMethod<{typeof(T).Name}> 失败：obj 为 null");
+                ModLogger.Error($"CallMethod<{typeof(T).Name}> 失败：obj 为 null");
                 return default;
             }
 
@@ -81,7 +81,7 @@ namespace DuckSort.Utils
 
             if (method == null)
             {
-                ModLogger.Warn($"在 {type.Name} 中找不到方法 {methodName}");
+                ModLogger.Error($"在 {type.Name} 中找不到方法 {methodName}");
                 return default;
             }
 
@@ -96,7 +96,7 @@ namespace DuckSort.Utils
         {
             if (type == null)
             {
-                ModLogger.Warn($"CallStaticMethod<{typeof(T).Name}> 失败：type 为 null");
+                ModLogger.Error($"CallStaticMethod<{typeof(T).Name}> 失败：type 为 null");
                 return default;
             }
 
@@ -105,7 +105,7 @@ namespace DuckSort.Utils
 
             if (method == null)
             {
-                ModLogger.Warn($"在 {type.Name} 中找不到静态方法 {methodName}");
+                ModLogger.Error($"在 {type.Name} 中找不到静态方法 {methodName}");
                 return default;
             }
 
@@ -122,7 +122,7 @@ namespace DuckSort.Utils
 
             if (type == null)
             {
-                ModLogger.Warn($"CallStaticMethodWithOut<{typeof(TOut).Name}> 失败：type 为 null");
+                ModLogger.Error($"CallStaticMethodWithOut<{typeof(TOut).Name}> 失败：type 为 null");
                 return false;
             }
 
@@ -131,7 +131,7 @@ namespace DuckSort.Utils
 
             if (method == null)
             {
-                ModLogger.Warn($"在 {type.Name} 中找不到静态方法 {methodName}");
+                ModLogger.Error($"在 {type.Name} 中找不到静态方法 {methodName}");
                 return false;
             }
 
