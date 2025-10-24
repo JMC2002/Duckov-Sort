@@ -361,5 +361,5 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
-DuckSort.zip
+*.zip
 /Properties/launchSettings.json
