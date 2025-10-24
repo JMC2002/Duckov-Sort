@@ -38,7 +38,7 @@ namespace DuckSort
             ItemHoveringUI.onSetupMeta += OnSetupMeta;
             _harmony = new Harmony(HarmonyId);
             _harmony.PatchAll(Assembly.GetExecutingAssembly());
-            ModLogger.Info("Patch applied");
+            ModLogger.Info("Harmony 补丁已加载");
         }
 
         void OnDestroy()
@@ -52,7 +52,7 @@ namespace DuckSort
         void OnDisable()
         {
             _harmony?.UnpatchAll(HarmonyId);
-            ModLogger.Info("Patch removed");
+            ModLogger.Info("Harmony 补丁已卸载");
         }
 
         private void OnSetupMeta(ItemHoveringUI uI, ItemMetaData data)
