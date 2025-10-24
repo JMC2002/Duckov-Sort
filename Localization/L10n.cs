@@ -97,7 +97,7 @@ namespace DuckSort.Localization
                     {
                         "Value" => "Value",
                         "Weight" => "Weight",
-                        "Ratio" => "Value/Weight",
+                        "Ratio" => "Val/Weight",
                         _ => buttonType
                     };
             }
