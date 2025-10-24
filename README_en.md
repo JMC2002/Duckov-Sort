@@ -1,11 +1,14 @@
-﻿**[ [中文](README.md) | English ]**
+﻿**🌐[ [中文](README.md) | English ]**
+    
+[📝 Change log](CHANGELOG.md)
 
+[📦 Releases](https://github.com/JMC2002/Duckov-Sort/releases)
 # Sorting by Weight/Value/Value-to-Weight Ratio
 ## 0. Installation
 
 For the Steam version, you can simply subscribe through the Steam Workshop: [Steam Workshop](https://steamcommunity.com/sharedfiles/filedetails/?id=3592004817)
 
-For other versions, you can either compile it yourself or download the `DuckSort.zip`, and then extract it to the `Mods` directory under your game installation folder (create the folder if it doesn't exist). The file structure should look like this:
+For other versions, you can either compile it yourself or download the `DuckSort.zip` in [📦 Releases](https://github.com/JMC2002/Duckov-Sort/releases), and then extract it to the `Mods` directory under your game installation folder (create the folder if it doesn't exist). The file structure should look like this:
 
 ```sh
 -- Escape from Duckov
