@@ -1,5 +1,4 @@
 ﻿using Duckov.UI;
-using DuckSort.Localization;
 using HarmonyLib;
 using ItemStatsSystem;
 using System;
@@ -10,6 +9,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using DuckSort.Core;
+using DuckSort.Utils;
 
 namespace DuckSort.Patches
 {
@@ -21,8 +21,7 @@ namespace DuckSort.Patches
             try
             {
                 // 获取 sortButton 按钮
-                var sortBtnField = typeof(InventoryDisplay).GetField("sortButton", BindingFlags.NonPublic | BindingFlags.Instance);
-                var sortBtn = sortBtnField?.GetValue(__instance) as Button;
+                var sortBtn = ReflectionHelper.GetFieldValue<Button>(__instance, "sortButton");
                 if (sortBtn == null)
                 {
                     ModLogger.Warn("sortButton 未找到，跳过按钮创建");
@@ -119,7 +118,7 @@ namespace DuckSort.Patches
                 var legacy = newGO.GetComponentInChildren<UnityEngine.UI.Text>(true);
                 if (legacy != null)
                     legacy.text = label;
-            }
+            } 
 
             var btn = newGO.GetComponent<Button>();
             btn.onClick.RemoveAllListeners();
@@ -138,9 +137,13 @@ namespace DuckSort.Patches
 
             inventory.Loading = true;
 
-            // 获取私有的 content 字段
-            var contentField = typeof(Inventory).GetField("content", BindingFlags.NonPublic | BindingFlags.Instance);
-            var content = (List<Item>)contentField?.GetValue(inventory);
+            var content = ReflectionHelper.GetFieldValue<List<Item>>(inventory, "content");
+            if (content == null)
+            {
+                ModLogger.Warn("无法获取 Inventory.content，排序失败");
+                inventory.Loading = false;
+                return;
+            }
 
             // 先筛选掉被锁定的 Item，并将其加入 list
             List<Item> list = new List<Item>();
@@ -165,9 +168,13 @@ namespace DuckSort.Patches
             foreach (var group in groupedItems)
             {
                 // 使用反射调用 TryMerge
-                var tryMergeMethod = typeof(Inventory).GetMethod("TryMerge", BindingFlags.NonPublic | BindingFlags.Static);
-                List<Item>? mergedItems = null;
-                tryMergeMethod?.Invoke(null, new object[] { group, mergedItems });
+                var args = new object[] { group, null! };
+                bool success = ReflectionHelper.CallStaticMethodWithOut(
+                    typeof(Inventory),
+                    "TryMerge",
+                    args,
+                    out List<Item>? mergedItems
+                );
 
                 // 如果合并成功，添加到 sortedItems
                 sortedItems.AddRange(mergedItems ?? group.ToList());
@@ -182,8 +189,7 @@ namespace DuckSort.Patches
 
             inventory.Loading = false;
             // 通过反射获取事件的委托，并手动调用
-            var fieldInfo = typeof(Inventory).GetField("onInventorySorted", BindingFlags.NonPublic | BindingFlags.Instance);
-            var eventDelegate = fieldInfo.GetValue(inventory) as Action<Inventory>;
+            var eventDelegate = ReflectionHelper.GetFieldValue<Action<Inventory>>(inventory, "onInventorySorted");
             eventDelegate?.Invoke(inventory);
         }
 

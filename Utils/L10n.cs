@@ -1,7 +1,7 @@
 ﻿using SodaCraft.Localizations;
 using UnityEngine;
 
-namespace DuckSort.Localization
+namespace DuckSort.Utils
 {
     public static class L10n
     {

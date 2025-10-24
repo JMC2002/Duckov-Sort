@@ -1,11 +1,13 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>netstandard2.1</TargetFramework>
+    <LangVersion>10.0</LangVersion>
     <Nullable>enable</Nullable>
     <!-- This should be the folder that contains Duckov.exe -->
     <!-- 下面这行里填写你的鸭科夫安装路径，这样编译器就能找到相关的dll文件 -->
     <DuckovPath>D:\SteamLibrary\steamapps\common\Escape from Duckov</DuckovPath>
     <UserSecretsId>f9477a73-4a2b-4aeb-8b14-adb1e9f9c33e</UserSecretsId>
+    <OutputType>Library</OutputType>
   </PropertyGroup>
   <ItemGroup>
         <Reference Include="$(DuckovPath)\Duckov_Data\Managed\TeamSoda.*" />

@@ -1,7 +1,8 @@
-﻿using System;
+﻿using DuckSort.Core;
+using System;
 using UnityEngine;
 
-namespace DuckSort.Core
+namespace DuckSort.Utils
 {
     public static class ModLogger
     {

@@ -9,6 +9,8 @@ using UnityEngine;
 namespace DuckSort
 {
     using Core;
+    using DuckSort.Utils;
+
     public class ModBehaviour : Duckov.Modding.ModBehaviour
     {
         TextMeshProUGUI _text = null;
