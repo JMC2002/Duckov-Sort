@@ -33,11 +33,12 @@ A new row of sorting options appears below the "Sort" button in both the backpac
 
 ## 🔔 3. Notes
 - The mod comes with a feature that displays item prices. This may conflict with other mods that display item prices. If you have both enabled, the price will be displayed twice. It is recommended to disable other price-display mods. I may consider adding a toggle option for this feature in the future.
-- The localization texts (including buttons and README) for this mod, except for the Chinese language, were generated with the help of automatic translation. Contributions for text improvements are welcome. You can submit a PR or leave a comment.
+- The localization texts (including buttons and README) for this mod, except for the Chinese language, were generated with the help of automatic translation. Contributions for text improvements are welcome. You can submit a PR or leave a comment.  Contributions for text improvements are welcome. You can submit a PR or leave a comment. The Japanese translation was kindly provided by my friend [さっちゃん](https://steamcommunity.com/profiles/76561199492777489/).
 
 ## 🧩 4. Compatibility
 - This mod involves UI changes. Mods that heavily modify the UI may conflict with this one.
 - This mod uses the Harmony framework. Other mods that conflict with Harmony might cause issues with this mod.
+-  This mod heavily relies on reflection, so it may become incompatible after future game updates.
 
 ## 🧭 5. TODO
 - Currently, the mod sorts in descending order by default. I may add an ascending/descending toggle button in the future.
@@ -45,3 +46,5 @@ A new row of sorting options appears below the "Sort" button in both the backpac
 - A configuration menu may be added to quickly enable/disable certain features.
 - The code is a bit rough at the moment and will likely be optimized in the future.
 - The sorting seems a bit slow, and I will look into performance optimization later.
+
+**If you like this Mod, please consider giving it a thumbs-up!**

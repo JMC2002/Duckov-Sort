@@ -3,6 +3,7 @@ using DuckSort.Utils;
 using ItemStatsSystem;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using TMPro;
@@ -111,11 +112,18 @@ namespace DuckSort.UI
 
             // 按 TypeID 分组，并进行 TryMerge 操作
             List<IGrouping<int, Item>> groupedItems = list.GroupBy(item => item.TypeID).ToList();
-
             var sortedItems = new List<Item>();
 
+            // 备注：此处目前为性能热点，800物品约需50ms
             foreach (var group in groupedItems)
             {
+                // 如果不可堆叠，直接添加到 sortedItems
+                if (!group.First<Item>().Stackable)
+                {
+                    sortedItems.AddRange(group);
+                    continue;
+                }
+
                 // 使用反射调用 TryMerge
                 var args = new object[] { group, null! };
                 bool success = ReflectionHelper.CallStaticMethodWithOut(
@@ -136,6 +144,7 @@ namespace DuckSort.UI
                 return result != 0 ? result : a.TypeID.CompareTo(b.TypeID); // 若相等则按 TypeID 比较，保证相同的 Item 放一起
             });
 
+            // 备注：此处目前为性能热点，800物品约需50ms
             foreach (var item in sortedItems)
             {
                 inventory.AddItem(item);
