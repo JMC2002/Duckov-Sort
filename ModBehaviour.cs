@@ -13,7 +13,7 @@ namespace DuckSort
 
     public class ModBehaviour : Duckov.Modding.ModBehaviour
     {
-        TextMeshProUGUI _text = null;
+        TextMeshProUGUI? _text = null;
         TextMeshProUGUI Text
         {
             get

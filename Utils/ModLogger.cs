@@ -19,7 +19,7 @@ namespace DuckSort.Utils
         }
 
         // 输出错误日志。
-        public static void Error(string message, Exception ex = null)
+        public static void Error(string message, Exception? ex = null)
         {
             Debug.LogError(Format("ERROR", message + (ex != null ? $"\n{ex}" : "")));
         }
