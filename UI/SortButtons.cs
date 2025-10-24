@@ -23,7 +23,7 @@ namespace DuckSort.UI
                     })
         };
 
-        public static bool[] Visibility = { true, true, true };
+        public static bool[] Visibility = { true, false, true };
         public SortedDictionary<int, SortButtonEntry> buttonDict;
 
         public SortButtons(RectTransform containerRT, Button templateButton, Inventory inventory)
@@ -33,19 +33,26 @@ namespace DuckSort.UI
             var cnt = SortModes.Length;
             buttonDict = new SortedDictionary<int, SortButtonEntry>(
                 Enumerable.Range(0, cnt)
-                    .Where(i => Visibility[i]) // 只保留可见项
-                    .Select(i => new
+                    .Select(i =>
                     {
-                        Index = i,
-                        Entry = new SortButtonEntry(
+                        if (!Visibility[i])
+                        {
+                            ModLogger.Info($"排序模式 {SortModes[i].Label} 已隐藏");
+                            return (Index: i, Entry: (SortButtonEntry?)null);
+                        }
+
+                        var entry = new SortButtonEntry(
                             containerRT,
                             templateButton,
                             inventory,
                             SortModes[i].Label,
                             SortModes[i].Comparison
-                        )
+                        );
+
+                        return (Index: i, Entry: entry);
                     })
-                    .ToDictionary(x => x.Index, x => x.Entry)
+                    .Where(x => x.Entry != null) // 去掉隐藏的项
+                    .ToDictionary(x => x.Index, x => x.Entry!)
             );
             ModLogger.Info($"成功新增一行 {SortModes.Length} 个按钮。");
         }
