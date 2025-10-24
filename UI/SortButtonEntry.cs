@@ -154,6 +154,7 @@ namespace DuckSort.UI
             // 通过反射获取事件的委托，并手动调用
             var eventDelegate = ReflectionHelper.GetFieldValue<Action<Inventory>>(inventory, "onInventorySorted");
             eventDelegate?.Invoke(inventory);
+            ModLogger.Info($"库存按{Tag}排序完成。");
         }
     }
 
