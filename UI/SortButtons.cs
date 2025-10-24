@@ -23,7 +23,7 @@ namespace DuckSort.UI
                     })
         };
 
-        public static bool[] Visibility = { true, false, true };
+        public static bool[] Visibility = { true, true, true };
         public SortedDictionary<int, SortButtonEntry> buttonDict;
 
         public SortButtons(RectTransform containerRT, Button templateButton, Inventory inventory)

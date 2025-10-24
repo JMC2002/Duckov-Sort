@@ -21,6 +21,12 @@ namespace DuckSort.Patches
         {
             try
             {
+                if (SortButtons.Visibility.All(v => v == false))
+                {
+                    ModLogger.Info("所有排序按钮均被隐藏，跳过按钮创建");
+                    return;
+                }
+
                 // 获取 sortButton 按钮
                 var sortBtn = ReflectionHelper.GetFieldValue<Button>(__instance, "sortButton");
                 if (sortBtn == null)
