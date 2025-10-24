@@ -1,4 +1,6 @@
-﻿**🌐[ [中文](README.md) | English ]**
+﻿> Note: The English page is translated by GPT and may not be updated in a timely manner. The latest version is based on the Chinese page.
+
+**🌐[ [中文](README.md) | English ]**
     
 [📝 Change log](CHANGELOG.md)
 
