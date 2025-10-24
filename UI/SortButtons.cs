@@ -13,7 +13,7 @@ namespace DuckSort.UI
     {
         private static readonly (string Label, Comparison<Item> Comparison)[] SortModes =
         {
-            ("按价格", (a, b) => b.GetTotalRawValue().CompareTo(a.GetTotalRawValue())),
+            ("按价值", (a, b) => b.GetTotalRawValue().CompareTo(a.GetTotalRawValue())),
             ("按重量", (a, b) => b.TotalWeight.CompareTo(a.TotalWeight)),
             ("按价重比", (a, b) =>
                     {
