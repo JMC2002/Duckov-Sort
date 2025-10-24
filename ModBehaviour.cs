@@ -8,6 +8,7 @@ using UnityEngine;
 
 namespace DuckSort
 {
+    using Core;
     public class ModBehaviour : Duckov.Modding.ModBehaviour
     {
         TextMeshProUGUI _text = null;
@@ -24,12 +25,12 @@ namespace DuckSort
         }
 
 
-        private const string HarmonyId = "DuckSort.CustomSortButtons";
+        private string HarmonyId = $"{VersionInfo.Name}.CustomSortButtons";
         private Harmony? _harmony;
 
         void Awake()
         {
-            Debug.Log("[DuckSort] 模组已加载");
+            ModLogger.Info("模组已加载");
         }
         void OnEnable()
         {
@@ -37,8 +38,9 @@ namespace DuckSort
             ItemHoveringUI.onSetupMeta += OnSetupMeta;
             _harmony = new Harmony(HarmonyId);
             _harmony.PatchAll(Assembly.GetExecutingAssembly());
-            Debug.Log("[DuckSort] Patch applied");
+            ModLogger.Info("Patch applied");
         }
+
         void OnDestroy()
         {
             ItemHoveringUI.onSetupItem -= OnSetupItemHoveringUI;
@@ -50,7 +52,7 @@ namespace DuckSort
         void OnDisable()
         {
             _harmony?.UnpatchAll(HarmonyId);
-            Debug.Log("[DuckSort] Patch removed");
+            ModLogger.Info("Patch removed");
         }
 
         private void OnSetupMeta(ItemHoveringUI uI, ItemMetaData data)

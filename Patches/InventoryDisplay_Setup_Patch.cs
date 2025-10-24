@@ -1,4 +1,5 @@
 ﻿using Duckov.UI;
+using DuckSort.Localization;
 using HarmonyLib;
 using ItemStatsSystem;
 using System;
@@ -8,8 +9,9 @@ using System.Reflection;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using DuckSort.Core;
 
-namespace DuckSort
+namespace DuckSort.Patches
 {
     [HarmonyPatch(typeof(InventoryDisplay), "Setup")]
     public static class InventoryDisplay_Setup_Patch
@@ -23,21 +25,22 @@ namespace DuckSort
                 var sortBtn = sortBtnField?.GetValue(__instance) as Button;
                 if (sortBtn == null)
                 {
-                    Debug.LogWarning("[DuckSort] sortButton 未找到，跳过按钮创建。");
+                    ModLogger.Warn("sortButton 未找到，跳过按钮创建");
                     return;
                 }
 
-                // 如果原整理按钮被隐藏，则跳过
+                // 如果原整理按钮被隐藏，则跳过，否则会在宠物背包上面创建按钮
                 if (!sortBtn.gameObject.activeSelf || sortBtn.GetComponent<CanvasRenderer>().GetAlpha() == 0)
                 {
-                    Debug.Log("[DuckSort] 原整理按钮被隐藏，跳过创建新按钮。");
+                    ModLogger.Info("原整理按钮被隐藏，跳过创建新按钮");
                     return;
                 }
 
-                var container = __instance.transform.Find("DuckSort_Container");
+                var container = __instance.transform.Find($"{VersionInfo.Name}_Container");
                 if (container != null)
                 {
                     // 如果已有按钮容器，先删除
+                    ModLogger.Info("已有按钮容器，先删除");
                     UnityEngine.Object.Destroy(container.gameObject);
                 }
 
@@ -47,7 +50,7 @@ namespace DuckSort
                 var grandParent = parentRect.parent.GetComponent<RectTransform>();
 
                 // 创建新容器
-                var newRowGO = new GameObject("DuckSort_Container", typeof(RectTransform));
+                var newRowGO = new GameObject($"{VersionInfo.Name}_Container", typeof(RectTransform));
                 var newRowRT = newRowGO.GetComponent<RectTransform>();
                 newRowRT.SetParent(grandParent, false);
 
@@ -76,41 +79,37 @@ namespace DuckSort
                 var RatioLabel = L10n.GetLabel("Ratio");
 
                 var inventory = __instance.Target;
+
                 // 创建三个排序按钮
                 CreateButton(newRowRT, sortBtn, ValueLabel, () =>
                 {
-                    Debug.Log("[DuckSort] 点击 按价值");
+                    ModLogger.Info($"点击 {ValueLabel}");
                     SortInventory(inventory, GetSortByValueComparison());
                 });
-                //CreateButton(newRowRT, sortBtn, ValueLabel, () =>
-                //{
-                //    Debug.Log("[DuckSort] 点击 按价值");
-                //    SortInventory(inventory, GetSortByValueComparison());
-                //});
 
                 CreateButton(newRowRT, sortBtn, WeightLabel, () =>
                 {
-                    Debug.Log("[DuckSort] 点击 按重量");
+                    ModLogger.Info($"点击 {WeightLabel}");
                     SortInventory(inventory, GetSortByWeightComparison());
                 });
 
                 CreateButton(newRowRT, sortBtn, RatioLabel, () =>
                 {
-                    Debug.Log("[DuckSort] 点击 价重比");
+                    ModLogger.Info($"点击 {RatioLabel}");
                     SortInventory(inventory, GetSortByRatioComparison());
                 });
-                Debug.Log("[DuckSort] 成功在整理按钮正下方新增一行三个按钮。");
+                ModLogger.Info("成功在整理按钮正下方新增一行三个按钮。");
             }
             catch (Exception ex)
             {
-                Debug.LogError("[DuckSort] 创建按钮失败: " + ex);
+                ModLogger.Error("创建按钮失败 ", ex);
             }
         }
 
         static void CreateButton(RectTransform containerRT, Button templateButton, string label, UnityEngine.Events.UnityAction onClick)
         {
             var newGO = UnityEngine.Object.Instantiate(templateButton.gameObject, containerRT);
-            newGO.name = "DuckSortBtn_" + label;
+            newGO.name = $"{VersionInfo.Name}Btn_" + label;
 
             TMP_Text tmp = newGO.GetComponentInChildren<TMP_Text>(true);
             if (tmp != null)
@@ -129,7 +128,7 @@ namespace DuckSort
             newGO.SetActive(true);
         }
 
-        public static void SortInventory(Inventory inventory, Comparison<Item> comparison)
+        private static void SortInventory(Inventory inventory, Comparison<Item> comparison)
         {
             // 判断是否正在加载，防止重复操作
             if (inventory.Loading)
@@ -165,7 +164,7 @@ namespace DuckSort
 
             foreach (var group in groupedItems)
             {
-                // 使用反射调用 TryMerge（假设它是静态的）
+                // 使用反射调用 TryMerge
                 var tryMergeMethod = typeof(Inventory).GetMethod("TryMerge", BindingFlags.NonPublic | BindingFlags.Static);
                 List<Item>? mergedItems = null;
                 tryMergeMethod?.Invoke(null, new object[] { group, mergedItems });
