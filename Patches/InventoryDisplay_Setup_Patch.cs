@@ -17,6 +17,8 @@ namespace DuckSort.Patches
     [HarmonyPatch(typeof(InventoryDisplay), "Setup")]
     public static class InventoryDisplay_Setup_Patch
     {
+        public static readonly string PatchTag = "CustomSortButtons";
+
         static void Postfix(InventoryDisplay __instance)
         {
             try

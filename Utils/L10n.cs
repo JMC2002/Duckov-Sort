@@ -16,6 +16,7 @@ namespace DuckSort.Utils
                         "按价值"   => "按价值",
                         "按重量"   => "按重量",
                         "按价重比" => "按价重比",
+                        "价重比"   => "价重比",
                         _ => buttonType
                     };
 
@@ -25,6 +26,7 @@ namespace DuckSort.Utils
                         "按价值"   => "按價值",
                         "按重量"   => "按重量",
                         "按价重比" => "按價重比",
+                        "价重比"   => "價重比",
                         _ => buttonType
                     };
 
@@ -34,6 +36,7 @@ namespace DuckSort.Utils
                         "按价值"   => "価値順",
                         "按重量"   => "重量順",
                         "按价重比" => "価値/重量順",
+                        "价重比"   => "価値/重量順",
                         _ => buttonType
                     };
 
@@ -43,6 +46,7 @@ namespace DuckSort.Utils
                         "按价值"   => "Wert",
                         "按重量"   => "Gewicht",
                         "按价重比" => "W/G",
+                        "价重比"   => "W/G",
                         _ => buttonType
                     };
 
@@ -52,6 +56,7 @@ namespace DuckSort.Utils
                         "按价值"   => "Ценность",
                         "按重量"   => "Вес",
                         "按价重比" => "Ц/В",
+                        "价重比"   => "Ц/В",
                         _ => buttonType
                     };
 
@@ -61,6 +66,7 @@ namespace DuckSort.Utils
                         "按价值"   => "Valor",
                         "按重量"   => "Peso",
                         "按价重比" => "V/P",
+                        "价重比"   => "V/P",
                         _ => buttonType
                     };
 
@@ -70,6 +76,7 @@ namespace DuckSort.Utils
                         "按价值"   => "가치",
                         "按重量"   => "무게",
                         "按价重比" => "가치/무게",
+                        "价重比"   => "가치/무게",
                         _ => buttonType
                     };
 
@@ -79,6 +86,7 @@ namespace DuckSort.Utils
                         "按价值"   => "Valeur",
                         "按重量"   => "Poids",
                         "按价重比" => "V/P",
+                        "价重比"   => "V/P",
                         _ => buttonType
                     };
 
@@ -88,6 +96,7 @@ namespace DuckSort.Utils
                         "按价值"   => "Valor",
                         "按重量"   => "Peso",
                         "按价重比" => "V/P",
+                        "价重比"   => "V/P",
                         _ => buttonType
                     };
 
@@ -98,6 +107,7 @@ namespace DuckSort.Utils
                         "按价值"   => "Value",
                         "按重量"   => "Weight",
                         "按价重比" => "Val/Weight",
+                        "价重比"   => "Val/Weight",
                         _ => buttonType
                     };
             }

@@ -1,24 +1,15 @@
-﻿using Duckov.UI;
-using Duckov.Utilities;
-using HarmonyLib;
-using ItemStatsSystem;
-using System.Reflection;
-using TMPro;
-using UnityEngine;
+﻿using DuckSort.Patches;
 using DuckSort.UI;
+using DuckSort.Utils;
 
 namespace DuckSort
 {
-    using Core;
-    using DuckSort.Utils;
-    using System;
 
     public class ModBehaviour : Duckov.Modding.ModBehaviour
     {
-        private readonly string HarmonyId = $"{VersionInfo.Name}.CustomSortButtons";
-        private Harmony? _harmony;
+        public AddText addText = new();
 
-        private AddText addText = new();
+        private HarmonyHelper harmonyHelper = new("CustomSortButtons");
 
         void Awake()
         {
@@ -27,9 +18,7 @@ namespace DuckSort
         void OnEnable()
         {
             addText.Enable();
-            _harmony = new Harmony(HarmonyId);
-            _harmony.PatchAll(Assembly.GetExecutingAssembly());
-            ModLogger.Info("Harmony 补丁已加载");
+            harmonyHelper.OnEnable();
         }
 
         void OnDestroy()
@@ -39,8 +28,7 @@ namespace DuckSort
 
         void OnDisable()
         {
-            _harmony?.UnpatchAll(HarmonyId);
-            ModLogger.Info("Harmony 补丁已卸载");
+            harmonyHelper.OnDisable();
         }
     }
 }
