@@ -1,12 +1,13 @@
 ﻿using Duckov.UI;
 using Duckov.Utilities;
+using DuckSort.Core;
+using DuckSort.Utils;
 using ItemStatsSystem;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
-using DuckSort.Utils;
-using System.Linq;
 
 namespace DuckSort.UI
 {
@@ -40,13 +41,13 @@ namespace DuckSort.UI
             {
                 Label = "价格",
                 ValueFunc = item => $"${item.GetTotalRawValue() / 2:F0}",
-                Enabled = true,
+                Enabled = ModConfig.ShowPriceText,
             },
             new TextEntry
             {
                 Label = "重量",
                 ValueFunc = item => $"{item.TotalWeight:F2}kg",
-                Enabled = true,
+                Enabled = false, // 默认关闭
             },
             new TextEntry
             {
@@ -59,14 +60,13 @@ namespace DuckSort.UI
                     float ratio = item.GetTotalRawValue() / item.TotalWeight;
                     return $"{name}: {(Math.Abs(ratio - MathF.Round(ratio)) < 0.001f ? ratio.ToString("F0") : ratio.ToString("F1"))}";
                },
-                Enabled = true, // 默认关闭
+                Enabled = ModConfig.ShowRatioText,
             },
         };
 
 // 启用/禁用事件绑定
 public void Enable()
         {
-            ModLogger.Info($"AddText.Enable() 调用时 TemplateTextUGUI = {GameplayDataSettings.UIStyle.TemplateTextUGUI}");
             ItemHoveringUI.onSetupItem += OnSetupItemHoveringUI;
             ItemHoveringUI.onSetupMeta += OnSetupMeta;
             ModLogger.Info("AddText 已启用");

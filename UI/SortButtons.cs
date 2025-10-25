@@ -7,6 +7,7 @@ using System.Text;
 using System.Diagnostics;
 using UnityEngine;
 using UnityEngine.UI;
+using DuckSort.Core;
 namespace DuckSort.UI
 {
     internal class SortButtons
@@ -23,7 +24,11 @@ namespace DuckSort.UI
                     })
         };
 
-        public static bool[] Visibility = { true, true, true };
+        public static bool[] Visibility = { 
+            ModConfig.ShowPriceButton,
+            ModConfig.ShowWeightButton,
+            ModConfig.ShowRatioButton
+        };
         public SortedDictionary<int, SortButtonEntry> buttonDict;
 
         public SortButtons(RectTransform containerRT, Button templateButton, Inventory inventory)

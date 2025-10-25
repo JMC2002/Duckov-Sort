@@ -22,7 +22,7 @@ namespace DuckSort.UI
         public RectTransform containerRT;
         public Button templateButton;
         public bool activeSelf = true;          // 按钮是否可见，游戏的代码就叫这个
-        public bool orderBy = false;            // 用于切换升序降序，默认为 false（降序）
+        public bool orderBy = ModConfig.DefaultSortAscending;            // 用于切换升序降序，默认为 false（降序）
 
         public SortButtonEntry(RectTransform containerRT, Button templateButton, Inventory inventory, string OrientedLabel, Comparison<Item> comparison)
         {
@@ -140,7 +140,7 @@ namespace DuckSort.UI
             // 根据 Comparison 排序
             sortedItems.Sort((a, b) =>
             {
-                int result = comparison(a, b);                              // 先按原有规则排序
+                int result = comparison(a, b) * (orderBy ? -1 : 1);         // 先按原有规则排序
                 return result != 0 ? result : a.TypeID.CompareTo(b.TypeID); // 若相等则按 TypeID 比较，保证相同的 Item 放一起
             });
 

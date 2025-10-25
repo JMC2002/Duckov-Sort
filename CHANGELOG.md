@@ -4,6 +4,24 @@
 
 版本号规则： 主版本号.次版本号.修订号，其中主版本号涉及到大功能完善，次版本号原则上Steam创意工坊发布新版本后进行更新，修订号每次涉及代码的commit后更新（从0开始）。
 
+## [1.4.2] - 2025-10-26
+### Added
+- 新增配置修改，暂时没做游戏内的，有需要的可以手动修改存档目录（可以在选择存档界面的左下角点击复制存档路径）下的`DuckSortConfig.json`，第一次更新需要打开游戏一次生成，其中`ShowPriceButton`、`ShowWeightButton`、`ShowRatioButton`控制三个按钮是否显示，`ShowPriceText`与`ShowRatioText`控制是否显示物品的价格与价重比（注：游戏内显示的重量为四舍五入值，因此可能出现显示的价重比与你手动计算不符的情况），`DefaultSortAscending`控制默认排序规则，其中`true`代表升序，`false`代表降序。很快会接入游戏内配置界面。默认配置如下：
+```json
+{
+  "ShowPriceButton": true,
+  "ShowWeightButton": true,
+  "ShowRatioButton": true,
+  "ShowPriceText": true,
+  "ShowRatioText": false,
+  "DefaultSortAscending": false
+}
+```
+### 下一个版本计划
+- 游戏内配置界面
+- 按钮切换升序/降序
+- 添加按稀有度排序的功能
+
 ## [1.3.1] - 2025-10-25
 ### Changed
 - 优化韩语显示

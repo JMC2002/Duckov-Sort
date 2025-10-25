@@ -1,4 +1,5 @@
-﻿using DuckSort.Patches;
+﻿using DuckSort.Core;
+using DuckSort.Patches;
 using DuckSort.UI;
 using DuckSort.Utils;
 
@@ -13,7 +14,8 @@ namespace DuckSort
 
         void Awake()
         {
-            ModLogger.Info("模组已加载");
+            ModConfig.Load();
+            ModLogger.Info("模组已启用");
         }
         void OnEnable()
         {
@@ -23,12 +25,15 @@ namespace DuckSort
 
         void OnDestroy()
         {
-            addText.Disable();
         }
 
         void OnDisable()
         {
+            addText.Disable();
             harmonyHelper.OnDisable();
+
+            ModConfig.Save();
+            ModLogger.Info("Mod 已禁用，配置已保存");
         }
     }
 }
