@@ -13,6 +13,8 @@ namespace DuckSort.UI
 {
     public class AddText
     {
+        private bool isEnabled = false;
+
         // 定义一个结构来描述每个显示字段
         private class TextEntry
         {
@@ -64,28 +66,53 @@ namespace DuckSort.UI
             },
         };
 
-// 启用/禁用事件绑定
-public void Enable()
+
+        public void Enable()
         {
+            if (isEnabled)
+                return;
+
             ItemHoveringUI.onSetupItem += OnSetupItemHoveringUI;
             ItemHoveringUI.onSetupMeta += OnSetupMeta;
+
+            // 订阅配置变化事件
+            ModConfig.OnConfigChanged += OnConfigChanged;
+
+            isEnabled = true;
             ModLogger.Info("AddText 已启用");
         }
 
         public void Disable()
         {
+            if (!isEnabled)
+                return;
+
             ItemHoveringUI.onSetupItem -= OnSetupItemHoveringUI;
             ItemHoveringUI.onSetupMeta -= OnSetupMeta;
 
-            // entries.Clear();
-            // 销毁所有文本对象
+            ModConfig.OnConfigChanged -= OnConfigChanged;
+
+            // 销毁所有已创建的文本对象
             foreach (var entry in entries.Where(e => e.Enabled && e.Text != null))
             {
                 ModLogger.Info($"销毁文本对象: {entry.Label}");
                 UnityEngine.Object.Destroy(entry.Text.gameObject);
             }
+
             ModLogger.Info("AddText 已禁用");
         }
+
+        private void OnConfigChanged()
+        {
+            ModLogger.Info("检测到配置更新，正在刷新 AddText...");
+
+            // 完全重新加载：先禁用再启用
+            Disable();
+            Enable();
+
+            ModLogger.Info("AddText 已根据配置重新加载完成。");
+        }
+
 
         private void OnSetupMeta(ItemHoveringUI ui, ItemMetaData data)
         {

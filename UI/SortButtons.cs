@@ -1,13 +1,12 @@
-﻿using DuckSort.Utils;
+﻿using DuckSort.Core;
+using DuckSort.Utils;
 using ItemStatsSystem;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Diagnostics;
 using UnityEngine;
 using UnityEngine.UI;
-using DuckSort.Core;
+
 namespace DuckSort.UI
 {
     internal class SortButtons
@@ -63,7 +62,7 @@ namespace DuckSort.UI
         }
 
 
-        public void toggleVisibility(int index)
+        public void ToggleVisibility(int index)
         {
             if (index < 0 || index >= SortModes.Length)
             {

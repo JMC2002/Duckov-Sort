@@ -1,26 +1,81 @@
 ﻿using System;
 using System.IO;
 using UnityEngine;
-using DuckSort.Utils; // 使用你的 ModLogger
+using DuckSort.Utils;
 
 namespace DuckSort.Core
 {
     public static class ModConfig
     {
-        // === 配置项 ===
-        public static bool ShowPriceButton = true;
-        public static bool ShowWeightButton = true;
-        public static bool ShowRatioButton = true;
+        // === 私有存储字段 ===
+        private static bool _showPriceButton = true;
+        private static bool _showWeightButton = true;
+        private static bool _showRatioButton = true;
 
-        public static bool ShowPriceText = true;
-        public static bool ShowRatioText = true;
+        private static bool _showPriceText = true;
+        private static bool _showRatioText = false;
 
-        public static bool DefaultSortAscending = false;  // false为降序、true为升序
+        private static bool _defaultSortAscending = false;
 
-        // === 路径定义 ===
-        private static readonly string ConfigDir = Path.Combine(Application.persistentDataPath, "Saves");
+        // === 公共属性（统一通过 Set<T> 触发保存与事件） ===
+        public static bool ShowPriceButton
+        {
+            get => _showPriceButton;
+            set => Set(ref _showPriceButton, value);
+        }
+
+        public static bool ShowWeightButton
+        {
+            get => _showWeightButton;
+            set => Set(ref _showWeightButton, value);
+        }
+
+        public static bool ShowRatioButton
+        {
+            get => _showRatioButton;
+            set => Set(ref _showRatioButton, value);
+        }
+
+        public static bool ShowPriceText
+        {
+            get => _showPriceText;
+            set => Set(ref _showPriceText, value);
+        }
+
+        public static bool ShowRatioText
+        {
+            get => _showRatioText;
+            set => Set(ref _showRatioText, value);
+        }
+
+        public static bool DefaultSortAscending
+        {
+            get => _defaultSortAscending;
+            set => Set(ref _defaultSortAscending, value);
+        }
+
+        // === 事件：配置变化通知 ===
+        public static event Action? OnConfigChanged;
+
+        // === 文件路径 ===
+        private static readonly string ConfigDir =
+            Path.Combine(Application.persistentDataPath, "Saves");
+
         private static readonly string ConfigName = $"{VersionInfo.Name}Config.json";
         private static readonly string ConfigPath = Path.Combine(ConfigDir, ConfigName);
+
+        // === 统一更新接口 ===
+        private static void Set<T>(ref T field, T newValue, [System.Runtime.CompilerServices.CallerMemberName] string? name = null)
+        {
+            if (!Equals(field, newValue))
+            {
+                var oldValue = field;
+                field = newValue;
+                Save();
+                OnConfigChanged?.Invoke();
+                ModLogger.Info($"配置更新: {name} {oldValue} → {newValue}");
+            }
+        }
 
         // === 加载配置 ===
         public static void Load()
@@ -41,30 +96,27 @@ namespace DuckSort.Core
                 }
 
                 string json = File.ReadAllText(ConfigPath);
-                ModLogger.Info($"读取配置文件: {ConfigPath}");
-
                 var cfg = JsonUtility.FromJson<TempConfig>(json);
+
                 if (cfg == null)
                 {
                     ModLogger.Error("配置文件内容不合法，已恢复默认配置。");
+                    File.Delete(ConfigPath);
                     Save();
                     return;
                 }
 
-                // 应用配置
-                ShowPriceButton = cfg.ShowPriceButton;
-                ShowWeightButton = cfg.ShowWeightButton;
-                ShowRatioButton = cfg.ShowRatioButton;
+                _showPriceButton = cfg.ShowPriceButton;
+                _showWeightButton = cfg.ShowWeightButton;
+                _showRatioButton = cfg.ShowRatioButton;
 
-                ShowPriceText = cfg.ShowPriceText;
-                ShowRatioText = cfg.ShowRatioText;
+                _showPriceText = cfg.ShowPriceText;
+                _showRatioText = cfg.ShowRatioText;
 
-                DefaultSortAscending = cfg.DefaultSortAscending;
+                _defaultSortAscending = cfg.DefaultSortAscending;
 
-                ModLogger.Info($"配置加载完成: " +
-                    $"按钮(价格={ShowPriceButton}, 重量={ShowWeightButton}, 性价比={ShowRatioButton}) | " +
-                    $"文本(价格={ShowPriceText}, 性价比={ShowRatioText}) | " +
-                    $"升序={DefaultSortAscending}");
+                ModLogger.Info("配置加载完成。");
+                OnConfigChanged?.Invoke();
             }
             catch (Exception ex)
             {
@@ -80,14 +132,14 @@ namespace DuckSort.Core
             {
                 var cfg = new TempConfig
                 {
-                    ShowPriceButton = ShowPriceButton,
-                    ShowWeightButton = ShowWeightButton,
-                    ShowRatioButton = ShowRatioButton,
+                    ShowPriceButton = _showPriceButton,
+                    ShowWeightButton = _showWeightButton,
+                    ShowRatioButton = _showRatioButton,
 
-                    ShowPriceText = ShowPriceText,
-                    ShowRatioText = ShowRatioText,
+                    ShowPriceText = _showPriceText,
+                    ShowRatioText = _showRatioText,
 
-                    DefaultSortAscending = DefaultSortAscending
+                    DefaultSortAscending = _defaultSortAscending
                 };
 
                 string json = JsonUtility.ToJson(cfg, true);
@@ -101,17 +153,15 @@ namespace DuckSort.Core
             }
         }
 
-        // === 数据结构（仅序列化使用） ===
+        // === 内部序列化类 ===
         [Serializable]
         private class TempConfig
         {
             public bool ShowPriceButton;
             public bool ShowWeightButton;
             public bool ShowRatioButton;
-
             public bool ShowPriceText;
             public bool ShowRatioText;
-
             public bool DefaultSortAscending;
         }
     }
