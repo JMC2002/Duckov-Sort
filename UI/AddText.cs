@@ -36,9 +36,45 @@ namespace DuckSort.UI
         }
 
         // 在这里注册所有可显示的字段
-        private List<TextEntry>? entries
-            = new ()
+        private List<TextEntry>? entries;
+        //    = new ()
+        //{
+        //    new TextEntry
+        //    {
+        //        Label = "价格",
+        //        ValueFunc = item => $"${item.GetTotalRawValue() / 2:F0}",
+        //        Enabled = ModConfig.ShowPriceText,
+        //    },
+        //    new TextEntry
+        //    {
+        //        Label = "重量",
+        //        ValueFunc = item => $"{item.TotalWeight:F2}kg",
+        //        Enabled = false, // 默认关闭
+        //    },
+        //    new TextEntry
+        //    {
+        //        Label = "价重比",
+        //        ValueFunc = item => {
+        //            var name = L10n.GetLabel("价重比");
+        //            if (item.TotalWeight < 0.001f)
+        //                return $"{name}: ∞";
+
+        //            float ratio = item.GetTotalRawValue() / 2 / item.TotalWeight;
+        //            return $"{name}: {(Math.Abs(ratio - MathF.Round(ratio)) < 0.001f ? ratio.ToString("F0") : ratio.ToString("F1"))}";
+        //       },
+        //        Enabled = ModConfig.ShowRatioText,
+        //    },
+        //};
+
+
+        public void Enable()
         {
+            if (isEnabled)
+                return;
+
+            entries
+           = new()
+       {
             new TextEntry
             {
                 Label = "价格",
@@ -59,18 +95,15 @@ namespace DuckSort.UI
                     if (item.TotalWeight < 0.001f)
                         return $"{name}: ∞";
 
-                    float ratio = item.GetTotalRawValue() / item.TotalWeight;
+                    float ratio = item.GetTotalRawValue() / 2 / item.TotalWeight;
+                    ModLogger.Info($"计算价重比: 总价值={item.GetTotalRawValue() / 2}, 总重量={item.TotalWeight}, 价重比={ratio}");
                     return $"{name}: {(Math.Abs(ratio - MathF.Round(ratio)) < 0.001f ? ratio.ToString("F0") : ratio.ToString("F1"))}";
                },
                 Enabled = ModConfig.ShowRatioText,
             },
-        };
+       };
 
 
-        public void Enable()
-        {
-            if (isEnabled)
-                return;
 
             ItemHoveringUI.onSetupItem += OnSetupItemHoveringUI;
             ItemHoveringUI.onSetupMeta += OnSetupMeta;

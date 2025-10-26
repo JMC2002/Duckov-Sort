@@ -14,12 +14,13 @@ namespace DuckSort
 
         void Awake()
         {
-            ModConfig.Load();
-            ModConfigLinker.Init();
-            ModLogger.Info("模组已启用");
         }
         void OnEnable()
         {
+            ModConfig.Load();
+            ModConfigLinker.Init();
+            ModLogger.Info("模组已启用");
+
             addText.Enable();
             harmonyHelper.OnEnable();
         }
