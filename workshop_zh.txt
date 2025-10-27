@@ -5,11 +5,19 @@
 [url=https://www.bilibili.com/video/BV1uBsBzMEm4/?vd_source=a23dec0dc1d809e1d014dd2f9135e10b] 演示视频（b站） [/url]
 
 [h2] 2. 功能 [/h2]
-背包和仓库的“整理”按钮下方多出一行排序选项，对应按价格、重量、价格/重量比排序
+[list]
+    [*] 背包和仓库的“整理”按钮下方新增一行排序选项，可按[b]价格[/b]、[b]重量[/b]、[b]价格/重量比[/b]排序。
+    [*] 模组可自定义显示或隐藏的项目。默认[b]显示[/b]：[b]按价格、按重量、按价重比排序按钮[/b]与[b]物品价格文本[/b]；默认[b]隐藏[/b]：[b]按稀有度、按单价排序按钮[/b]与[b]价重比文本[/b]。  
+如需自定义，请前往[b]存档路径（非游戏路径）[/b]，在存档选择界面可查看路径，找到文件[b]DuckSortConfig.json[/b]（若不存在，启动游戏一次后生成；删除文件可恢复默认设置），将对应键值改为[b]true[/b]或[b]false[/b]即可。
+    [*] 如欲于游戏内修改设置，请订阅并启用[url=https://steamcommunity.com/sharedfiles/filedetails/?id=3590674339]ModConfig[/url]模组，并将其置于本模组上方（首次启用需重启游戏方可生效）。启用后即可在游戏内修改设置，目前除排序升降序外的修改仍需重启游戏方可生效，未来将进一步优化。
+        [img]https://images.steamusercontent.com/ugc/11844509390956973161/E76AAA2109DA698538F9D09346D2D1FAF3B91664/?imw=5000&imh=5000&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=false[/img]
+[/list]
 
 [h2] 3. 提醒 [/h2]
 [list]
-    [*] MOD自带显示物品价格，与其他显示物品价格的MOD冲突，同时打开会重复显示价格，建议把别的物品价格的MOD取消掉，后续可能会考虑加个开关
+    [*] 本MOD自带物品价格显示，与其他显示价格的MOD冲突，同时启用会重复显示价格。此时可按上文所述关闭本MOD的价格显示
+    [*] [b]按稀有度排序[/b]基于游戏内置的稀有度规则，类似于[url=https://steamcommunity.com/sharedfiles/filedetails/?id=3588329796]炫彩物品与搜索音效[/url]
+    [*] [b]按单价排序[/b]主要供使用无限堆叠MOD的玩家使用
     [*] 本MOD的本地化文本（包括按钮与README）除了中文外均借助自动翻译生成，欢迎贡献文本，只需要提交PR或者在评论区留言即可，日文由朋友[url=https://steamcommunity.com/profiles/76561199492777489/] さっちゃん [/url]帮忙完成
 [/list]
 
@@ -24,12 +32,12 @@
 [list]
     [*] 目前默认按降序排序，后续可能会加个升序/降序切换按钮
     [*] 目前UI较为粗糙，后续可能会优化UI
-    [*] 后续可能会增添配置菜单，方便快捷打开/关闭一些功能
+    [*] [strike] 后续可能会增添配置菜单，方便快捷打开/关闭一些功能 [/strike] ✔️
     [*] [strike] 目前代码写得很粗糙，后续应该会优化代码结构 [/strike] ✔️
     [*] [strike] 目前排序似乎有点慢，后面可能会看看优化性能 [/strike] ✔️
 [/list]
 
 [h2] 6. 其他 [/h2]
-有意见和建议欢迎大家在讨论区留言或者github提issue，更新日志可以点击右上角“改动说明”查看。
+有意见和建议欢迎大家在讨论区留言或者github提issue，更新日志可以点击右上角“[url=https://steamcommunity.com/sharedfiles/filedetails/changelog/3592004817] 改动说明 [/url]”查看。
 
 [b] 如果你喜好这个 Mod 的话，希望可以点一下好评~[/b]

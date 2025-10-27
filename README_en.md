@@ -29,10 +29,16 @@ For other versions, you can either compile it yourself or download the `DuckSort
 After playing the game for a while, I wanted to sort items by price or weight to make it easier to throw away junk. After waiting for several days without anyone creating this mod, I decided to make it myself.
 
 ## ⚙️ 2. Features
-A new row of sorting options appears below the "Sort" button in both the backpack and warehouse, allowing you to sort by price, weight, or value-to-weight ratio.
+- Added an extra row of sorting options below the “Sort” button in the backpack and stash, allowing sorting by **Value**, **Weight**, and **Val/Weight**.
+- The mod allows customization of which buttons and texts are shown. By default, the following are **enabled**: **Sort by Price**, **Sort by Weight**, **Sort by Price/Weight Ratio buttons**, and **Item Price Text**; while **disabled** by default are **Sort by Rarity**, **Sort by Unit Price buttons**, and **Price/Weight Ratio Text**.  
+- To modify settings in-game, subscribe to and enable the [ModConfig](https://steamcommunity.com/sharedfiles/filedetails/?id=3590674339) mod.  
+  Place **ModConfig** above this mod in the load order (a restart is required the first time). You can then configure settings directly in-game.  
+  Currently, changes other than sort order (ascending/descending) require restarting the game to take effect, but this will be improved in future updates.
 
 ## 🔔 3. Notes
-- The mod comes with a feature that displays item prices. This may conflict with other mods that display item prices. If you have both enabled, the price will be displayed twice. It is recommended to disable other price-display mods. I may consider adding a toggle option for this feature in the future.
+- This mod includes its own item price display, which may conflict with other mods that show item prices. If duplicate prices appear, simply disable this mod’s price display as described above.
+- **Sort by Rarity** uses the game’s built-in item rarity system, similar to the rules used in [Fancy Items & Sounds](https://steamcommunity.com/sharedfiles/filedetails/?id=3588329796).
+- **Sort by Unit Price** is mainly designed for players using infinite stack mods.
 - The localization texts (including buttons and README) for this mod, except for the Chinese language, were generated with the help of automatic translation. Contributions for text improvements are welcome. You can submit a PR or leave a comment.  Contributions for text improvements are welcome. You can submit a PR or leave a comment. The Japanese translation was kindly provided by my friend [さっちゃん](https://steamcommunity.com/profiles/76561199492777489/).
 
 ## 🧩 4. Compatibility

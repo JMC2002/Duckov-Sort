@@ -8,11 +8,24 @@ After playing the game for a while, I wanted to sort items by price or weight to
 [url=https://www.bilibili.com/video/BV1uBsBzMEm4/?vd_source=a23dec0dc1d809e1d014dd2f9135e10b] Demo Video (Bilibili) [/url]
 
 [h2] 2. Features [/h2]
-A new row of sorting options appears below the "Sort" button in both the backpack and warehouse, allowing you to sort by price, weight, or value-to-weight ratio.
+[list]
+    [*] Added an extra row of sorting options below the “Sort” button in the backpack and stash, allowing sorting by [b]Value[/b], [b]Weight[/b], and [b]Val/Weight[/b].
+    [*] The mod supports customizable visibility for buttons and texts.  
+By default, the following are [b]enabled[/b]: [b]Sort by Price[/b], [b]Sort by Weight[/b], [b]Sort by Price/Weight Ratio buttons[/b], and [b]Item Price Text[/b];  
+and the following are [b]disabled[/b]: [b]Sort by Rarity[/b], [b]Sort by Unit Price buttons[/b], and [b]Price/Weight Ratio Text[/b].  
+To customize, go to your [b]save folder[/b] (not the game folder — the path can be found on the save selection screen), locate [b]DuckSortConfig.json[/b] (launch the game once if it doesn’t exist; delete to reset defaults), and set the corresponding keys to [b]true[/b] or [b]false[/b].
+    [*] To change settings in-game, subscribe to and enable [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3590674339]ModConfig[/url], and place it above this mod (a restart is required the first time).  
+You can then adjust settings in-game.  
+Currently, only the sort order (ascending/descending) can be changed without restarting, but future updates will improve this.
+        [img]https://images.steamusercontent.com/ugc/14227591291656832831/09A14780E7475D4094F211D1BACD4D255DE07A52/?imw=5000&imh=5000&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=false[/img]
+
+[/list]
 
 [h2] 3. Notes [/h2]
 [list]
-    [*] The mod comes with a feature that displays item prices. This may conflict with other mods that display item prices. If you have both enabled, the price will be displayed twice. It is recommended to disable other price-display mods. I may consider adding a toggle option for this feature in the future.
+    [*] This mod includes its own item price display, which may conflict with other price display mods. If duplicate prices appear, disable this mod’s price display as described above.
+    [*] [b]Sort by Rarity[/b] uses the game’s built-in rarity system, similar to [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3588329796]Colorful Fancy Items & Sounds[/url].
+    [*] [b]Sort by Unit Price[/b] is mainly intended for players using infinite stack mods.
     [*] The localization texts (including buttons and README) for this mod, except for the Chinese language, were generated with the help of automatic translation. Contributions for text improvements are welcome. You can submit a PR or leave a comment. The Japanese translation was kindly provided by my friend [url=https://steamcommunity.com/profiles/76561199492777489/]さっちゃん[/url].
 [/list]
 
@@ -27,14 +40,14 @@ A new row of sorting options appears below the "Sort" button in both the backpac
 [list]
     [*] Currently, the mod sorts in descending order by default. I may add an ascending/descending toggle button in the future.
     [*] The UI is quite basic at the moment and may be improved in the future.
-    [*] A configuration menu may be added to quickly enable/disable certain features.
+    [*] [strike] A configuration menu may be added to quickly enable/disable certain features.  [/strike] ✔️
     [*] [strike] The code is a bit rough at the moment and will likely be optimized in the future.  [/strike] ✔️
     [*] [strike] The sorting seems a bit slow, and I will look into performance optimization later. [/strike] ✔️
 [/list]
 
 [h2] 6. Others [/h2]
 If you have any feedback or suggestions, feel free to leave a comment in the discussion section or open an issue on GitHub.  
-You can view the changelog by clicking " Change Notes ( view )" in the upper-right corner.
+You can view the changelog by clicking " [url=https://steamcommunity.com/sharedfiles/filedetails/changelog/3592004817] Change Notes ( view ) [/url]" in the upper-right corner.
 
 [b] If you like this Mod, please consider giving it a thumbs-up! [/b]
 
