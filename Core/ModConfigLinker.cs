@@ -27,12 +27,12 @@ namespace DuckSort.Core
             ModLogger.Info("检测到 ModConfig，正在注册配置项...");
 
             // === 注册布尔配置项 ===
-            ModConfigAPI.SafeAddBoolDropdownList(ModName, nameof(ModConfig.ShowPriceButton), "显示价格按钮", ModConfig.ShowPriceButton);
-            ModConfigAPI.SafeAddBoolDropdownList(ModName, nameof(ModConfig.ShowWeightButton), "显示重量按钮", ModConfig.ShowWeightButton);
-            ModConfigAPI.SafeAddBoolDropdownList(ModName, nameof(ModConfig.ShowRatioButton), "显示价重比按钮", ModConfig.ShowRatioButton);
-            ModConfigAPI.SafeAddBoolDropdownList(ModName, nameof(ModConfig.ShowPriceText), "显示价格信息", ModConfig.ShowPriceText);
-            ModConfigAPI.SafeAddBoolDropdownList(ModName, nameof(ModConfig.ShowRatioText), "显示价重比信息", ModConfig.ShowRatioText);
-            ModConfigAPI.SafeAddBoolDropdownList(ModName, nameof(ModConfig.DefaultSortAscending), "是否升序排序", ModConfig.DefaultSortAscending);
+            ModConfigAPI.SafeAddBoolDropdownList(ModName, nameof(ModConfig.ShowPriceButton),      L10n.GetLabel("显示价格按钮"),   ModConfig.ShowPriceButton);
+            ModConfigAPI.SafeAddBoolDropdownList(ModName, nameof(ModConfig.ShowWeightButton),     L10n.GetLabel("显示重量按钮"),   ModConfig.ShowWeightButton);
+            ModConfigAPI.SafeAddBoolDropdownList(ModName, nameof(ModConfig.ShowRatioButton),      L10n.GetLabel("显示价重比按钮"), ModConfig.ShowRatioButton);
+            ModConfigAPI.SafeAddBoolDropdownList(ModName, nameof(ModConfig.ShowPriceText),        L10n.GetLabel("显示价格信息"),   ModConfig.ShowPriceText);
+            ModConfigAPI.SafeAddBoolDropdownList(ModName, nameof(ModConfig.ShowRatioText),        L10n.GetLabel("显示价重比信息"), ModConfig.ShowRatioText);
+            ModConfigAPI.SafeAddBoolDropdownList(ModName, nameof(ModConfig.DefaultSortAscending), L10n.GetLabel("是否升序排序"),   ModConfig.DefaultSortAscending);
 
             // === 从 ModConfig API 载入已保存的设置（覆盖本地） ===
             SyncFromModConfigAPI();
