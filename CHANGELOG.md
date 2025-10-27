@@ -4,6 +4,20 @@
 
 版本号规则： 主版本号.次版本号.修订号，其中主版本号涉及到大功能完善，次版本号原则上Steam创意工坊发布新版本后进行更新，修订号每次涉及代码的commit后更新（从0开始）。
 
+## [1.4.6] - 2025-10-28
+### Added
+增添了**按稀有度排序**与**按单价排序**的功能，其中前者的*稀有度*为游戏内置的物品稀有度，类似于MOD[炫彩物品与搜索音效](https://steamcommunity.com/sharedfiles/filedetails/?id=3588329796)使用的规则，后者主要提供给使用了无限堆叠MOD的玩家使用。
+
+两个功能均为默认关闭，需要在配置文件“**DuckSortConfig.json**”中将“**ShowQualityButton**”与”**ShowUnitPriceButton**”设置为“**true**”方可显示对应按钮，或者订阅[ModConfig](https://steamcommunity.com/sharedfiles/filedetails/?id=3590674339)修改设置并重启游戏后生效。
+
+## [1.4.5] - 2025-10-26
+### Fixed
+优化了设置界面的日语显示
+
+## [1.4.4] - 2025-10-26
+### Added
+增添了ModConfig的设置界面的本地化支持
+
 ## [1.4.3] - 2025-10-26
 ### Fixed
 上一个版本推送错误，导致本应该默认关闭显示的价重比默认打开显示、无法通过修改json文件修改价重比、价值显示与否，此版本接入了[ModConfig](https://steamcommunity.com/sharedfiles/filedetails/?id=3590674339)，可以在游戏内修改设置，**但是由于是紧急推送的版本，目前除了排序顺序外的选项均需要完全退出游戏后重新进入方能生效**，这个问题很快会解决。
