@@ -11,6 +11,8 @@ namespace DuckSort.Core
         private static bool _showPriceButton = true;
         private static bool _showWeightButton = true;
         private static bool _showRatioButton = true;
+        private static bool _showQualityButton = false;
+        private static bool _showUnitPriceButton = false;
 
         private static bool _showPriceText = true;
         private static bool _showRatioText = false;
@@ -34,6 +36,18 @@ namespace DuckSort.Core
         {
             get => _showRatioButton;
             set => Set(ref _showRatioButton, value);
+        }
+
+        public static bool ShowQualityButton
+        {
+            get => _showQualityButton;
+            set => Set(ref _showQualityButton, value);
+        }
+
+        public static bool ShowUnitPriceButton
+        {
+            get => _showUnitPriceButton;
+            set => Set(ref _showUnitPriceButton, value);
         }
 
         public static bool ShowPriceText
@@ -109,6 +123,8 @@ namespace DuckSort.Core
                 _showPriceButton = cfg.ShowPriceButton;
                 _showWeightButton = cfg.ShowWeightButton;
                 _showRatioButton = cfg.ShowRatioButton;
+                _showQualityButton = cfg.ShowQualityButton;
+                _showUnitPriceButton = cfg.ShowUnitPriceButton;
 
                 _showPriceText = cfg.ShowPriceText;
                 _showRatioText = cfg.ShowRatioText;
@@ -135,6 +151,8 @@ namespace DuckSort.Core
                     ShowPriceButton = _showPriceButton,
                     ShowWeightButton = _showWeightButton,
                     ShowRatioButton = _showRatioButton,
+                    ShowQualityButton = _showQualityButton,
+                    ShowUnitPriceButton = _showUnitPriceButton,
 
                     ShowPriceText = _showPriceText,
                     ShowRatioText = _showRatioText,
@@ -160,6 +178,8 @@ namespace DuckSort.Core
             public bool ShowPriceButton;
             public bool ShowWeightButton;
             public bool ShowRatioButton;
+            public bool ShowQualityButton;
+            public bool ShowUnitPriceButton;
             public bool ShowPriceText;
             public bool ShowRatioText;
             public bool DefaultSortAscending;

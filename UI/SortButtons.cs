@@ -20,13 +20,21 @@ namespace DuckSort.UI
                         float ratioA = a.GetTotalRawValue() / Math.Max(a.TotalWeight, 0.001f);
                         float ratioB = b.GetTotalRawValue() / Math.Max(b.TotalWeight, 0.001f);
                         return ratioB.CompareTo(ratioA);
-                    })
+                    }),
+            ("按稀有度", (a, b) => b.Quality.CompareTo(a.Quality)),
+            ("按单价", (a, b) => {
+                // 这里不要直接调用a.Value，这样不会计算嵌在里面的物品价值（比如配件、子弹、包包）
+                Func<Item, float> f = (i) => i.GetTotalRawValue() / i.StackCount;
+                return f(b).CompareTo(f(a));
+            }),
         };
 
         public static bool[] Visibility = { 
             ModConfig.ShowPriceButton,
             ModConfig.ShowWeightButton,
-            ModConfig.ShowRatioButton
+            ModConfig.ShowRatioButton,
+            ModConfig.ShowQualityButton,
+            ModConfig.ShowUnitPriceButton
         };
         public SortedDictionary<int, SortButtonEntry> buttonDict;
 
