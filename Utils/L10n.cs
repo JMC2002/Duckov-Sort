@@ -164,7 +164,7 @@ namespace DuckSort.Utils
                         "按单价" => "Prix",
                         "显示稀有度按钮" => "Afficher le bouton de rareté",
                         "显示单价按钮"   => "Afficher le bouton de prix",
-                        "显示价格按钮"   => "Afficher le bouton de prix",
+                        "显示价格按钮"   => "Afficher le bouton de Valeur",
                         "显示重量按钮"   => "Afficher le bouton de poids",
                         "显示价重比按钮" => "Afficher le bouton du rapport prix/poids",
                         "显示价格信息"   => "Afficher les informations de prix",
