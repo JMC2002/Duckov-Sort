@@ -156,19 +156,19 @@ namespace DuckSort.Utils
                 case SystemLanguage.French:
                     return buttonType switch
                     {
-                        "按价值"   => "Valeur",
-                        "按重量"   => "Poids",
-                        "按价重比" => "V/P",
-                        "价重比"   => "V/P",
-                        "按稀有度" => "Rareté",
-                        "按单价" => "Prix",
+                        "按价值"         => "Valeur",
+                        "按重量"         => "Poids",
+                        "按价重比"       => "V/P",
+                        "价重比"         => "V/P",
+                        "按稀有度"       => "Rareté",
+                        "按单价"         => "Unitaire",
                         "显示稀有度按钮" => "Afficher le bouton de rareté",
-                        "显示单价按钮"   => "Afficher le bouton de prix",
+                        "显示单价按钮"   => "Afficher le bouton de prix unitaire",
                         "显示价格按钮"   => "Afficher le bouton de Valeur",
                         "显示重量按钮"   => "Afficher le bouton de poids",
-                        "显示价重比按钮" => "Afficher le bouton du rapport prix/poids",
+                        "显示价重比按钮" => "Afficher le bouton du rapport valeur/poids",
                         "显示价格信息"   => "Afficher les informations de prix",
-                        "显示价重比信息" => "Afficher les informations du rapport prix/poids",
+                        "显示价重比信息" => "Afficher les informations du rapport valeur/poids",
                         "是否升序排序"   => "Trier par ordre croissant",
                         _ => buttonType
                     };
