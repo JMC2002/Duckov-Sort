@@ -94,7 +94,7 @@ namespace DuckSort.UI
             ModConfig.OnConfigChanged -= OnConfigChanged;
 
             // 销毁所有已创建的文本对象
-            foreach (var entry in entries.Where(e => e.Enabled && e.Text != null))
+            foreach (var entry in entries.Where(e => e.Text != null))
             {
                 ModLogger.Info($"销毁文本对象: {entry.Label}");
                 UnityEngine.Object.Destroy(entry.Text.gameObject);
