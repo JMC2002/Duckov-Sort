@@ -18,6 +18,7 @@ namespace DuckSort.Core
         private static bool _showRatioText = false;
 
         private static bool _defaultSortAscending = false;
+        private static bool _enableDebugLogs = false;
 
         // === 公共属性（统一通过 Set<T> 触发保存与事件） ===
         public static bool ShowPriceButton
@@ -66,6 +67,11 @@ namespace DuckSort.Core
         {
             get => _defaultSortAscending;
             set => Set(ref _defaultSortAscending, value);
+        }
+        public static bool EnableDebugLogs
+        {
+            get => _enableDebugLogs;
+            set => Set(ref _enableDebugLogs, value);
         }
 
         // === 事件：配置变化通知 ===
@@ -130,6 +136,7 @@ namespace DuckSort.Core
                 _showRatioText = cfg.ShowRatioText;
 
                 _defaultSortAscending = cfg.DefaultSortAscending;
+                _enableDebugLogs = cfg.EnableDebugLogs;
 
                 ModLogger.Info("配置加载完成。");
                 OnConfigChanged?.Invoke();
@@ -157,7 +164,8 @@ namespace DuckSort.Core
                     ShowPriceText = _showPriceText,
                     ShowRatioText = _showRatioText,
 
-                    DefaultSortAscending = _defaultSortAscending
+                    DefaultSortAscending = _defaultSortAscending,
+                    EnableDebugLogs = _enableDebugLogs
                 };
 
                 string json = JsonUtility.ToJson(cfg, true);
@@ -188,6 +196,7 @@ namespace DuckSort.Core
             public bool ShowPriceText;
             public bool ShowRatioText;
             public bool DefaultSortAscending;
+            public bool EnableDebugLogs;
         }
     }
 }

@@ -79,7 +79,7 @@ namespace DuckSort.UI
                              return $"{name}: ∞";
             
                          float ratio = item.GetTotalRawValue() / 2 / item.TotalWeight;
-                         // ModLogger.Info($"计算价重比: 总价值={item.GetTotalRawValue() / 2}, 总重量={item.TotalWeight}, 价重比={ratio}");
+                         ModLogger.Debug($"计算价重比: 总价值={item.GetTotalRawValue() / 2}, 总重量={item.TotalWeight}, 价重比={ratio}");
                          return $"{name}: {(Math.Abs(ratio - MathF.Round(ratio)) < 0.001f ? ratio.ToString("F0") : ratio.ToString("F1"))}";
                     },
                      () => ModConfig.ShowRatioText

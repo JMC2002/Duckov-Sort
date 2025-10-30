@@ -35,6 +35,7 @@ namespace DuckSort.Core
             ModConfigAPI.SafeAddBoolDropdownList(ModName, nameof(ModConfig.ShowPriceText),        L10n.GetLabel("显示价格信息"),   ModConfig.ShowPriceText);
             ModConfigAPI.SafeAddBoolDropdownList(ModName, nameof(ModConfig.ShowRatioText),        L10n.GetLabel("显示价重比信息"), ModConfig.ShowRatioText);
             ModConfigAPI.SafeAddBoolDropdownList(ModName, nameof(ModConfig.DefaultSortAscending), L10n.GetLabel("是否升序排序"),   ModConfig.DefaultSortAscending);
+            ModConfigAPI.SafeAddBoolDropdownList(ModName, nameof(ModConfig.EnableDebugLogs),      L10n.GetLabel("启用调试日志"),   ModConfig.EnableDebugLogs);
 
             // === 从 ModConfig API 载入已保存的设置（覆盖本地） ===
             SyncFromModConfigAPI();
@@ -81,6 +82,9 @@ namespace DuckSort.Core
                 case nameof(ModConfig.DefaultSortAscending):
                     ModConfig.DefaultSortAscending = ModConfigAPI.SafeLoad(ModName, shortKey, ModConfig.DefaultSortAscending);
                     break;
+                case nameof(ModConfig.EnableDebugLogs):
+                    ModConfig.EnableDebugLogs = ModConfigAPI.SafeLoad(ModName, shortKey, ModConfig.EnableDebugLogs);
+                    break;
             }
 
             // 保存到本地 JSON
@@ -104,6 +108,7 @@ namespace DuckSort.Core
             ModConfig.ShowPriceText = ModConfigAPI.SafeLoad(ModName, nameof(ModConfig.ShowPriceText), ModConfig.ShowPriceText);
             ModConfig.ShowRatioText = ModConfigAPI.SafeLoad(ModName, nameof(ModConfig.ShowRatioText), ModConfig.ShowRatioText);
             ModConfig.DefaultSortAscending = ModConfigAPI.SafeLoad(ModName, nameof(ModConfig.DefaultSortAscending), ModConfig.DefaultSortAscending);
+            ModConfig.EnableDebugLogs = ModConfigAPI.SafeLoad(ModName, nameof(ModConfig.EnableDebugLogs), ModConfig.EnableDebugLogs);
 
             // 同步到本地文件
             ModConfig.Save();

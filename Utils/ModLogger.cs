@@ -9,13 +9,27 @@ namespace DuckSort.Utils
 {
     public static class ModLogger
     {
+        // === Debug 模式开关 ===
+        public static bool EnableDebug => ModConfig.EnableDebugLogs;
+
+        public static void Debug(string message,
+            [CallerMemberName] string caller = "",
+            [CallerFilePath] string file = "",
+            [CallerLineNumber] int line = 0)
+        {
+            if (!EnableDebug)
+                return;
+
+            UnityEngine.Debug.Log(Format("DEBUG", message, caller, file, line));
+        }
+
         // 输出普通信息日志。
         public static void Info(string message,
             [CallerMemberName] string caller = "",
             [CallerFilePath] string file = "",
             [CallerLineNumber] int line = 0)
         {
-            Debug.Log(Format("INFO", message, caller, file, line));
+            UnityEngine.Debug.Log(Format("INFO", message, caller, file, line));
         }
 
         // 输出警告日志。
@@ -24,7 +38,7 @@ namespace DuckSort.Utils
             [CallerFilePath] string file = "",
             [CallerLineNumber] int line = 0)
         {
-            Debug.LogWarning(Format("WARN", message, caller, file, line));
+            UnityEngine.Debug.LogWarning(Format("WARN", message, caller, file, line));
         }
 
         // 输出错误日志。
@@ -33,7 +47,7 @@ namespace DuckSort.Utils
             [CallerFilePath] string file = "",
             [CallerLineNumber] int line = 0)
         {
-            Debug.LogError(Format("ERROR", message + (ex != null ? $"\n{ex}" : ""), caller, file, line));
+            UnityEngine.Debug.LogError(Format("ERROR", message + (ex != null ? $"\n{ex}" : ""), caller, file, line));
         }
 
         // 格式化输出文本，包含时间、版本信息。
@@ -71,7 +85,7 @@ namespace DuckSort.Utils
         public void Dispose()
         {
             _watch.Stop();
-            ModLogger.Info($"[Timer] {_label} 耗时: {_watch.Elapsed.TotalMilliseconds:F2} ms");
+            ModLogger.Debug($"[Timer] {_label} 耗时: {_watch.Elapsed.TotalMilliseconds:F2} ms");
         }
     }
 }
