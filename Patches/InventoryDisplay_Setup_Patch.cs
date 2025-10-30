@@ -1,16 +1,12 @@
 ﻿using Duckov.UI;
+using DuckSort.Core;
+using DuckSort.UI;
+using DuckSort.Utils;
 using HarmonyLib;
-using ItemStatsSystem;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
-using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using DuckSort.Core;
-using DuckSort.Utils;
-using DuckSort.UI;
 
 namespace DuckSort.Patches
 {
