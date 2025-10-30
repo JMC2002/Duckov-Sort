@@ -20,8 +20,14 @@ namespace DuckSort.UI
         {
             public string? Label;
             public Func<Item, string>? ValueFunc;
-            public bool Enabled;
+
+            private readonly Func<bool>? enabledGetter;
+            public bool Enabled => enabledGetter?.Invoke() ?? false;
+
             public TextMeshProUGUI? _text = null;
+
+            // 此处不能直接写成public TextMeshProUGUI Text => _text ??= UnityEngine.Object.Instantiate(GameplayDataSettings.UIStyle.TemplateTextUGUI);
+
             public TextMeshProUGUI Text
             {
                 get
@@ -33,34 +39,41 @@ namespace DuckSort.UI
                     return _text;
                 }
             }
+
+            public TextEntry(string label, Func<Item, string> valueFunc, Func<bool> enabledGetter)
+            {
+                Label = label;
+                ValueFunc = valueFunc;
+                this.enabledGetter = enabledGetter;
+            }
         }
 
         // 在这里注册所有可显示的字段
-        private List<TextEntry>? entries;
+        private List<TextEntry> entries = new();
 
         public void Enable()
         {
             if (isEnabled)
                 return;
 
-            entries = new()
-            {
-                 new TextEntry
-                 {
-                     Label = "价格",
-                     ValueFunc = item => $"${item.GetTotalRawValue() / 2:F0}",
-                     Enabled = ModConfig.ShowPriceText,
-                 },
-                 new TextEntry
-                 {
-                     Label = "重量",
-                     ValueFunc = item => $"{item.TotalWeight:F2}kg",
-                     Enabled = false, // 默认关闭
-                 },
-                 new TextEntry
-                 {
-                     Label = "价重比",
-                     ValueFunc = item => {
+            // 清理旧的条目（如果有的话）
+            entries.Clear();
+
+            entries.Add(new TextEntry(
+                     "价格",
+                     item => $"${item.GetTotalRawValue() / 2:F0}",
+                     () => ModConfig.ShowPriceText
+                 ));
+
+            entries.Add(new TextEntry(
+                     "重量",
+                     item => $"{item.TotalWeight:F2}kg",
+                     () => false // 默认关闭
+                 ));
+
+            entries.Add(new TextEntry(
+                     "价重比",
+                     item => {
                          var name = L10n.GetLabel("价重比");
                          if (item.TotalWeight < 0.001f)
                              return $"{name}: ∞";
@@ -69,9 +82,8 @@ namespace DuckSort.UI
                          // ModLogger.Info($"计算价重比: 总价值={item.GetTotalRawValue() / 2}, 总重量={item.TotalWeight}, 价重比={ratio}");
                          return $"{name}: {(Math.Abs(ratio - MathF.Round(ratio)) < 0.001f ? ratio.ToString("F0") : ratio.ToString("F1"))}";
                     },
-                     Enabled = ModConfig.ShowRatioText,
-                 },
-            };
+                     () => ModConfig.ShowRatioText
+                 ));
             
              ItemHoveringUI.onSetupItem += OnSetupItemHoveringUI;
              ItemHoveringUI.onSetupMeta += OnSetupMeta;
@@ -105,13 +117,7 @@ namespace DuckSort.UI
 
         private void OnConfigChanged()
         {
-            ModLogger.Info("检测到配置更新，正在刷新 AddText...");
-
-            // 完全重新加载：先禁用再启用
-            Disable();
-            Enable();
-
-            ModLogger.Info("AddText 已根据配置重新加载完成。");
+            ModLogger.Info("AddText 配置已更新。");
         }
 
 
@@ -151,24 +157,21 @@ namespace DuckSort.UI
                     return;
                 }
 
-                foreach (var entry in entries.Where(e => e.Enabled))
+                foreach (var entry in entries)
                 {
-                    if (entry.ValueFunc == null)
-                    {
-                        ModLogger.Error($"entry.ValueFunc 为 null，Label={entry.Label}");
-                        continue;
-                    }
+                    bool enabled = entry.Enabled;
+                    entry.Text.gameObject.SetActive(enabled);
+                    if (!enabled) continue;
 
                     var text = entry.Text;
-                    if (text == null)
-                    {
-                        ModLogger.Error($"entry.Text 为 null，Label={entry.Label}");
-                        continue;
-                    }
-
-                    text.gameObject.SetActive(true);
                     text.transform.SetParent(ui.LayoutParent);
                     text.transform.localScale = Vector3.one;
+
+                    if (entry.ValueFunc == null)
+                    {
+                        ModLogger.Warn($"ValueFunc 为 null，跳过 {entry.Label}");
+                        continue;
+                    }
                     text.text = entry.ValueFunc(item);
                     text.fontSize = 20f;
                 }
