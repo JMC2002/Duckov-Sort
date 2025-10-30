@@ -13,6 +13,7 @@ namespace DuckSort.Core
         private static bool _showRatioButton = true;
         private static bool _showQualityButton = false;
         private static bool _showUnitPriceButton = false;
+        private static bool _showIDButton = false;
 
         private static bool _showPriceText = true;
         private static bool _showRatioText = false;
@@ -49,6 +50,12 @@ namespace DuckSort.Core
         {
             get => _showUnitPriceButton;
             set => Set(ref _showUnitPriceButton, value);
+        }
+
+        public static bool ShowIDButton
+        {
+            get => _showIDButton;
+            set => Set(ref _showIDButton, value);
         }
 
         public static bool ShowPriceText
@@ -131,6 +138,7 @@ namespace DuckSort.Core
                 _showRatioButton = cfg.ShowRatioButton;
                 _showQualityButton = cfg.ShowQualityButton;
                 _showUnitPriceButton = cfg.ShowUnitPriceButton;
+                _showIDButton = cfg.ShowIDButton;
 
                 _showPriceText = cfg.ShowPriceText;
                 _showRatioText = cfg.ShowRatioText;
@@ -160,6 +168,7 @@ namespace DuckSort.Core
                     ShowRatioButton = _showRatioButton,
                     ShowQualityButton = _showQualityButton,
                     ShowUnitPriceButton = _showUnitPriceButton,
+                    ShowIDButton = _showIDButton,
 
                     ShowPriceText = _showPriceText,
                     ShowRatioText = _showRatioText,
@@ -193,6 +202,7 @@ namespace DuckSort.Core
             public bool ShowRatioButton;
             public bool ShowQualityButton;
             public bool ShowUnitPriceButton;
+            public bool ShowIDButton;
             public bool ShowPriceText;
             public bool ShowRatioText;
             public bool DefaultSortAscending;

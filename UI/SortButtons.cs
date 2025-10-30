@@ -27,6 +27,7 @@ namespace DuckSort.UI
                 Func<Item, float> f = (i) => i.GetTotalRawValue() / i.StackCount;
                 return f(b).CompareTo(f(a));
             }),
+            ("按ID", (a, b) => b.TypeID.CompareTo(a.TypeID)),
         };
 
         public static bool[] Visibility => new bool[]{ 
@@ -34,7 +35,8 @@ namespace DuckSort.UI
             ModConfig.ShowWeightButton,
             ModConfig.ShowRatioButton,
             ModConfig.ShowQualityButton,
-            ModConfig.ShowUnitPriceButton
+            ModConfig.ShowUnitPriceButton,
+            ModConfig.ShowIDButton,
         };
         public SortedDictionary<int, SortButtonEntry> buttonDict;
 

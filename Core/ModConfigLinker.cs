@@ -29,6 +29,7 @@ namespace DuckSort.Core
             ModConfigAPI.SafeAddBoolDropdownList(ModName, nameof(ModConfig.ShowRatioButton),      L10n.GetLabel("显示价重比按钮"),     ModConfig.ShowRatioButton);
             ModConfigAPI.SafeAddBoolDropdownList(ModName, nameof(ModConfig.ShowQualityButton),    L10n.GetLabel("显示稀有度按钮"),     ModConfig.ShowQualityButton);
             ModConfigAPI.SafeAddBoolDropdownList(ModName, nameof(ModConfig.ShowUnitPriceButton),  L10n.GetLabel("显示单价按钮"),       ModConfig.ShowUnitPriceButton);
+            ModConfigAPI.SafeAddBoolDropdownList(ModName, nameof(ModConfig.ShowIDButton),         L10n.GetLabel("显示ID按钮"),         ModConfig.ShowIDButton);
             ModConfigAPI.SafeAddBoolDropdownList(ModName, nameof(ModConfig.ShowPriceText),        L10n.GetLabel("显示价格信息"),       ModConfig.ShowPriceText);
             ModConfigAPI.SafeAddBoolDropdownList(ModName, nameof(ModConfig.ShowRatioText),        L10n.GetLabel("显示价重比信息"),     ModConfig.ShowRatioText);
             ModConfigAPI.SafeAddBoolDropdownList(ModName, nameof(ModConfig.DefaultSortAscending), L10n.GetLabel("交换左右键排序方向"), ModConfig.DefaultSortAscending);
@@ -69,6 +70,9 @@ namespace DuckSort.Core
                     break;
                 case nameof(ModConfig.ShowUnitPriceButton):
                     ModConfig.ShowUnitPriceButton = ModConfigAPI.SafeLoad(ModName, shortKey, ModConfig.ShowUnitPriceButton);
+                    break;
+                case nameof(ModConfig.ShowIDButton):
+                    ModConfig.ShowIDButton = ModConfigAPI.SafeLoad(ModName, shortKey, ModConfig.ShowIDButton);
                     break;
                 case nameof(ModConfig.ShowPriceText):
                     ModConfig.ShowPriceText = ModConfigAPI.SafeLoad(ModName, shortKey, ModConfig.ShowPriceText);
