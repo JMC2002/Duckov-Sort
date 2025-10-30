@@ -1,7 +1,4 @@
-﻿using System;
-using UnityEngine;
-using DuckSort.Core;
-using DuckSort.Utils;
+﻿using DuckSort.Utils;
 
 namespace DuckSort.Core
 {
@@ -27,15 +24,15 @@ namespace DuckSort.Core
             ModLogger.Info("检测到 ModConfig，正在注册配置项...");
 
             // === 注册布尔配置项 ===
-            ModConfigAPI.SafeAddBoolDropdownList(ModName, nameof(ModConfig.ShowPriceButton),      L10n.GetLabel("显示价格按钮"),   ModConfig.ShowPriceButton);
-            ModConfigAPI.SafeAddBoolDropdownList(ModName, nameof(ModConfig.ShowWeightButton),     L10n.GetLabel("显示重量按钮"),   ModConfig.ShowWeightButton);
-            ModConfigAPI.SafeAddBoolDropdownList(ModName, nameof(ModConfig.ShowRatioButton),      L10n.GetLabel("显示价重比按钮"), ModConfig.ShowRatioButton);
-            ModConfigAPI.SafeAddBoolDropdownList(ModName, nameof(ModConfig.ShowQualityButton),    L10n.GetLabel("显示稀有度按钮"), ModConfig.ShowQualityButton);
-            ModConfigAPI.SafeAddBoolDropdownList(ModName, nameof(ModConfig.ShowUnitPriceButton),  L10n.GetLabel("显示单价按钮"),   ModConfig.ShowUnitPriceButton);
-            ModConfigAPI.SafeAddBoolDropdownList(ModName, nameof(ModConfig.ShowPriceText),        L10n.GetLabel("显示价格信息"),   ModConfig.ShowPriceText);
-            ModConfigAPI.SafeAddBoolDropdownList(ModName, nameof(ModConfig.ShowRatioText),        L10n.GetLabel("显示价重比信息"), ModConfig.ShowRatioText);
-            ModConfigAPI.SafeAddBoolDropdownList(ModName, nameof(ModConfig.DefaultSortAscending), L10n.GetLabel("是否升序排序"),   ModConfig.DefaultSortAscending);
-            ModConfigAPI.SafeAddBoolDropdownList(ModName, nameof(ModConfig.EnableDebugLogs),      L10n.GetLabel("启用调试日志"),   ModConfig.EnableDebugLogs);
+            ModConfigAPI.SafeAddBoolDropdownList(ModName, nameof(ModConfig.ShowPriceButton),      L10n.GetLabel("显示价格按钮"),       ModConfig.ShowPriceButton);
+            ModConfigAPI.SafeAddBoolDropdownList(ModName, nameof(ModConfig.ShowWeightButton),     L10n.GetLabel("显示重量按钮"),       ModConfig.ShowWeightButton);
+            ModConfigAPI.SafeAddBoolDropdownList(ModName, nameof(ModConfig.ShowRatioButton),      L10n.GetLabel("显示价重比按钮"),     ModConfig.ShowRatioButton);
+            ModConfigAPI.SafeAddBoolDropdownList(ModName, nameof(ModConfig.ShowQualityButton),    L10n.GetLabel("显示稀有度按钮"),     ModConfig.ShowQualityButton);
+            ModConfigAPI.SafeAddBoolDropdownList(ModName, nameof(ModConfig.ShowUnitPriceButton),  L10n.GetLabel("显示单价按钮"),       ModConfig.ShowUnitPriceButton);
+            ModConfigAPI.SafeAddBoolDropdownList(ModName, nameof(ModConfig.ShowPriceText),        L10n.GetLabel("显示价格信息"),       ModConfig.ShowPriceText);
+            ModConfigAPI.SafeAddBoolDropdownList(ModName, nameof(ModConfig.ShowRatioText),        L10n.GetLabel("显示价重比信息"),     ModConfig.ShowRatioText);
+            ModConfigAPI.SafeAddBoolDropdownList(ModName, nameof(ModConfig.DefaultSortAscending), L10n.GetLabel("交换左右键排序方向"), ModConfig.DefaultSortAscending);
+            ModConfigAPI.SafeAddBoolDropdownList(ModName, nameof(ModConfig.EnableDebugLogs),      L10n.GetLabel("启用调试日志"),       ModConfig.EnableDebugLogs);
 
             // === 从 ModConfig API 载入已保存的设置（覆盖本地） ===
             SyncFromModConfigAPI();

@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace DuckSort.Core
+﻿namespace DuckSort.Core
 {
     public static class VersionInfo
     {
         public const string Name = "DuckSort";
-        public const string Version = "1.5.3";
+        public const string Version = "1.6.1";
 
         public static string Tag => $"[{Name} v{Version}]";
     }

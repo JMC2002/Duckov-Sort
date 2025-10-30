@@ -13,21 +13,21 @@ namespace DuckSort.Utils
                 case SystemLanguage.ChineseSimplified:
                     return buttonType switch
                     {
-                        "按价值"   => "按价值",
-                        "按重量"   => "按重量",
-                        "按价重比" => "按价重比",
-                        "价重比"   => "价重比",
-                        "按稀有度" => "按稀有度",
-                        "按单价"   => "按单价",
-                        "显示稀有度按钮" => "显示稀有度按钮",
-                        "显示单价按钮"   => "显示单价按钮",
-                        "显示价格按钮"   => "显示价格按钮",
-                        "显示重量按钮"   => "显示重量按钮",  
-                        "显示价重比按钮" => "显示价重比按钮",
-                        "显示价格信息"   => "显示价格信息",  
-                        "显示价重比信息" => "显示价重比信息",
-                        "是否升序排序"   => "是否升序排序",
-                        "启用调试日志"   => "启用调试日志",
+                        "按价值"             => "按价值",
+                        "按重量"             => "按重量",
+                        "按价重比"           => "按价重比",
+                        "价重比"             => "价重比",
+                        "按稀有度"           => "按稀有度",
+                        "按单价"             => "按单价",
+                        "显示稀有度按钮"     => "显示稀有度按钮",
+                        "显示单价按钮"       => "显示单价按钮",
+                        "显示价格按钮"       => "显示价格按钮",
+                        "显示重量按钮"       => "显示重量按钮",  
+                        "显示价重比按钮"     => "显示价重比按钮",
+                        "显示价格信息"       => "显示价格信息",  
+                        "显示价重比信息"     => "显示价重比信息",
+                        "交换左右键排序方向" => "交换左右键排序方向",
+                        "启用调试日志"       => "启用调试日志",
                         _ => buttonType
                     };
 
@@ -47,7 +47,7 @@ namespace DuckSort.Utils
                         "显示价重比按钮" => "顯示價重比按鈕",
                         "显示价格信息" => "顯示價格資訊",
                         "显示价重比信息" => "顯示價重比資訊",
-                        "是否升序排序" => "是否升序排序",
+                        "交换左右键排序方向" => "交換左右鍵排序方向",
                         "启用调试日志" => "啟用除錯日誌",
 
                         _ => buttonType
@@ -69,7 +69,7 @@ namespace DuckSort.Utils
                         "显示价重比按钮" => "価格／重量比ボタンを表示"  ,
                         "显示价格信息"   => "価格情報を表示"  ,
                         "显示价重比信息" => "価格／重量比情報を表示"  ,
-                        "是否升序排序"   => "昇順で並べ替えるかどうか",
+                        "交换左右键排序方向" => "左右クリックの並べ替え方向を入れ替える",
                         "启用调试日志" => "デバッグログを有効にする",
 
                         _ => buttonType
@@ -91,7 +91,7 @@ namespace DuckSort.Utils
                         "显示价重比按钮" => "Preis-Gewichts-Verhältnis-Schaltfläche anzeigen",
                         "显示价格信息" => "Preisinformation anzeigen",
                         "显示价重比信息" => "Preis-Gewichts-Verhältnis-Information anzeigen",
-                        "是否升序排序" => "Aufsteigend sortieren",
+                        "交换左右键排序方向" => "Links-/Rechtsklick-Sortierrichtung tauschen",
                         "启用调试日志" => "Debug-Log aktivieren",
 
 
@@ -114,7 +114,7 @@ namespace DuckSort.Utils
                         "显示价重比按钮" => "Показать кнопку Ц/В",
                         "显示价格信息" => "Показать информацию о цене",
                         "显示价重比信息" => "Показать информацию о Ц/В",
-                        "是否升序排序" => "Сортировать по возрастанию",
+                        "交换左右键排序方向" => "Поменять местами направление сортировки левой и правой кнопок",
                         "启用调试日志" => "Включить журнал отладки",
 
                         _ => buttonType
@@ -136,7 +136,7 @@ namespace DuckSort.Utils
                         "显示价重比按钮" => "Mostrar botón de relación precio-peso",
                         "显示价格信息" => "Mostrar información de precio",
                         "显示价重比信息" => "Mostrar información de relación precio-peso",
-                        "是否升序排序" => "Ordenar de forma ascendente",
+                        "交换左右键排序方向" => "Intercambiar la dirección de orden con los clics izquierdo y derecho",
                         "启用调试日志" => "Habilitar registro de depuración",
 
                         _ => buttonType
@@ -158,7 +158,7 @@ namespace DuckSort.Utils
                         "显示价重比按钮" => "가격/무게 비율 버튼 표시",
                         "显示价格信息" => "가격 정보 표시",
                         "显示价重比信息" => "가격/무게 비율 정보 표시",
-                        "是否升序排序" => "오름차순 정렬 여부",
+                        "交换左右键排序方向" => "좌우 클릭 정렬 방향 전환",
                         "启用调试日志" => "디버그 로그 활성화",
 
                         _ => buttonType
@@ -180,7 +180,7 @@ namespace DuckSort.Utils
                         "显示价重比按钮" => "Afficher le bouton du rapport valeur/poids",
                         "显示价格信息"   => "Afficher les informations de prix",
                         "显示价重比信息" => "Afficher les informations du rapport valeur/poids",
-                        "是否升序排序"   => "Trier par ordre croissant",
+                        "交换左右键排序方向" => "Inverser la direction de tri des clics gauche/droite",
                         "启用调试日志" => "Activer le journal de débogage",
 
                         _ => buttonType
@@ -202,7 +202,7 @@ namespace DuckSort.Utils
                         "显示价重比按钮" => "Mostrar botão de relação V/P",
                         "显示价格信息" => "Mostrar informações de preço",
                         "显示价重比信息" => "Mostrar informações de relação V/P",
-                        "是否升序排序" => "Ordenar em ordem crescente",
+                        "交换左右键排序方向" => "Inverter a direção de ordenação dos cliques esquerdo/direito",
                         "启用调试日志" => "Ativar registro de depuração",
 
                         _ => buttonType
@@ -225,7 +225,7 @@ namespace DuckSort.Utils
                         "显示价重比按钮" => "Show Price-to-Weight Button",
                         "显示价格信息" => "Show Price Info",
                         "显示价重比信息" => "Show Price-to-Weight Info",
-                        "是否升序排序" => "Sort in Ascending Order",
+                        "交换左右键排序方向" => "Swap left and right click sorting direction",
                         "启用调试日志" => "Enable debug log",
 
                         _ => buttonType
