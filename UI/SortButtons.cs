@@ -29,7 +29,7 @@ namespace DuckSort.UI
             }),
         };
 
-        public static bool[] Visibility = { 
+        public static bool[] Visibility => new bool[]{ 
             ModConfig.ShowPriceButton,
             ModConfig.ShowWeightButton,
             ModConfig.ShowRatioButton,
@@ -70,15 +70,15 @@ namespace DuckSort.UI
         }
 
 
-        public void ToggleVisibility(int index)
-        {
-            if (index < 0 || index >= SortModes.Length)
-            {
-                ModLogger.Error($"尝试设置按钮可见性时索引越界: {index}，有效范围为 0 到 {SortModes.Length - 1}");
-                return;
-            }
-            Visibility[index] = !Visibility[index];
-            ModLogger.Info($"按钮索引 {index} 的可见性已更改为 {Visibility[index]}");
-        }
+        //public void ToggleVisibility(int index)
+        //{
+        //    if (index < 0 || index >= SortModes.Length)
+        //    {
+        //        ModLogger.Error($"尝试设置按钮可见性时索引越界: {index}，有效范围为 0 到 {SortModes.Length - 1}");
+        //        return;
+        //    }
+        //    Visibility[index] = !Visibility[index];
+        //    ModLogger.Info($"按钮索引 {index} 的可见性已更改为 {Visibility[index]}");
+        //}
     }
 }

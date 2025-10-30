@@ -85,6 +85,9 @@ namespace DuckSort.Core
 
             // 保存到本地 JSON
             ModConfig.Save();
+
+            // 通知所有订阅者（AddText、HarmonyHelper等）
+            ModConfig.InvokeConfigChanged();
         }
 
         /// <summary>
@@ -93,6 +96,7 @@ namespace DuckSort.Core
         public static void SyncFromModConfigAPI()
         {
             if (!ModConfigAPI.IsAvailable()) return;
+            ModLogger.Info("从 ModConfigAPI 同步配置项...");
 
             ModConfig.ShowPriceButton = ModConfigAPI.SafeLoad(ModName, nameof(ModConfig.ShowPriceButton), ModConfig.ShowPriceButton);
             ModConfig.ShowWeightButton = ModConfigAPI.SafeLoad(ModName, nameof(ModConfig.ShowWeightButton), ModConfig.ShowWeightButton);
@@ -103,6 +107,7 @@ namespace DuckSort.Core
 
             // 同步到本地文件
             ModConfig.Save();
+            ModLogger.Info("同步完成。");
         }
     }
 }

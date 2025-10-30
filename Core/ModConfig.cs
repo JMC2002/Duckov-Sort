@@ -171,6 +171,11 @@ namespace DuckSort.Core
             }
         }
 
+        public static void InvokeConfigChanged()
+        {
+            OnConfigChanged?.Invoke();
+        }
+
         // === 内部序列化类 ===
         [Serializable]
         private class TempConfig
