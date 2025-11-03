@@ -5,25 +5,27 @@
 [h2] 1. Introduction [/h2]
 After playing the game for a while, I wanted to sort items by price or weight to make it easier to throw away junk. After waiting for several days without anyone creating this mod, I decided to make it myself.
 [url=https://github.com/JMC2002/Duckov-Sort] GitHub Link [/url]
-[url=https://www.bilibili.com/video/BV1uBsBzMEm4/?vd_source=a23dec0dc1d809e1d014dd2f9135e10b] Demo Video (Bilibili) [/url]
+[url=https://www.bilibili.com/video/BV1uBsBzMEm4/?vd_source=a23dec0dc1d809e1d014dd2f9135e10b] Demo Video (Bilibili) (Old) [/url]
+[url=https://www.bilibili.com/video/BV1g71NBjEft/?share_source=copy_web&vd_source=44d0c79301287bc97d360d78d8e0ec0f] Demo Video (Bilibili) [/url]
 
 [h2] 2. Features [/h2]
 [list]
-    [*] Added an extra row of sorting options below the “Sort” button in the backpack and stash, allowing sorting by [b]Value[/b], [b]Weight[/b], and [b]Val/Weight[/b].
+    [*] Added an extra row of sorting options below the “Sort” button in the backpack and stash, allowing sorting by [b]Value[/b], [b]Weight[/b], and [b]Val/Weight[/b].  
+By default, [b]Left-click[/b] sorts in [b]descending[/b] order, and [b]Right-click[/b] sorts in [b]ascending[/b] order.  
+You can change this behavior via a configurable parameter to swap the order directions.
     [*] The mod supports customizable visibility for buttons and texts.  
 By default, the following are [b]enabled[/b]: [b]Sort by Price[/b], [b]Sort by Weight[/b], [b]Sort by Price/Weight Ratio buttons[/b], and [b]Item Price Text[/b];  
-and the following are [b]disabled[/b]: [b]Sort by Rarity[/b], [b]Sort by Unit Price buttons[/b], and [b]Price/Weight Ratio Text[/b].  
+and the following are [b]disabled[/b]: [b]Sort by Rarity[/b], [b]Sort by Unit Price[/b], [b]Sort by ID buttons[/b], and [b]Price/Weight Ratio Text[/b].  
 To customize, go to your [b]save folder[/b] (not the game folder — the path can be found on the save selection screen), locate [b]DuckSortConfig.json[/b] (launch the game once if it doesn’t exist; delete to reset defaults), and set the corresponding keys to [b]true[/b] or [b]false[/b].
     [*] To change settings in-game, subscribe to and enable [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3590674339]ModConfig[/url], and place it above this mod (a restart is required the first time).  
-You can then adjust settings in-game.  
-Currently, only the sort order (ascending/descending) can be changed without restarting, but future updates will improve this.
-        [img]https://images.steamusercontent.com/ugc/14227591291656832831/09A14780E7475D4094F211D1BACD4D255DE07A52/?imw=5000&imh=5000&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=false[/img]
-
+Once enabled, you can modify the settings directly in-game.  
+        [img]https://images.steamusercontent.com/ugc/11844509390956973161/E76AAA2109DA698538F9D09346D2D1FAF3B91664/?imw=5000&imh=5000&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=false[/img]
 [/list]
+
 
 [h2] 3. Notes [/h2]
 [list]
-    [*] This mod includes its own item price display, which may conflict with other price display mods. If duplicate prices appear, disable this mod’s price display as described above.
+    [*] This mod includes its own item price display, and when enabled together with other price display mods, duplicate prices may appear. In that case, disable this mod’s price display as described above.
     [*] [b]Sort by Rarity[/b] uses the game’s built-in rarity system, similar to [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3588329796]Colorful Fancy Items & Sounds[/url].
     [*] [b]Sort by Unit Price[/b] is mainly intended for players using infinite stack mods.
     [*] The localization texts (including buttons and README) for this mod, except for the Chinese language, were generated with the help of automatic translation. Contributions for text improvements are welcome. You can submit a PR or leave a comment. The Japanese translation was kindly provided by my friend [url=https://steamcommunity.com/profiles/76561199492777489/]さっちゃん[/url].
@@ -38,8 +40,8 @@ Currently, only the sort order (ascending/descending) can be changed without res
 
 [h2] 5. TODO [/h2]
 [list]
-    [*] Currently, the mod sorts in descending order by default. I may add an ascending/descending toggle button in the future.
-    [*] The UI is quite basic at the moment and may be improved in the future.
+    [*] [strike] The UI is quite basic at the moment and may be improved in the future.  [/strike]
+    [*] [strike] Currently, the mod sorts in descending order by default. I may add an ascending/descending toggle button in the future.  [/strike] ✔️
     [*] [strike] A configuration menu may be added to quickly enable/disable certain features.  [/strike] ✔️
     [*] [strike] The code is a bit rough at the moment and will likely be optimized in the future.  [/strike] ✔️
     [*] [strike] The sorting seems a bit slow, and I will look into performance optimization later. [/strike] ✔️

@@ -30,6 +30,8 @@ namespace DuckSort.Utils
                         "显示价重比信息"     => "显示价重比信息",
                         "交换左右键排序方向" => "交换左右键排序方向",
                         "启用调试日志"       => "启用调试日志",
+                        "单价"               => "单价",
+                        "显示单价信息"       => "显示单价信息",
                         _ => buttonType
                     };
 
@@ -53,6 +55,8 @@ namespace DuckSort.Utils
                         "显示价重比信息"     => "顯示價重比資訊",
                         "交换左右键排序方向" => "交換左右鍵排序方向",
                         "启用调试日志"       => "啟用除錯日誌",
+                        "单价"               => "單價",
+                        "显示单价信息"       => "顯示單價資訊",
 
                         _ => buttonType
                     };
@@ -77,6 +81,8 @@ namespace DuckSort.Utils
                         "显示价重比信息"     => "価格／重量比情報を表示"  ,
                         "交换左右键排序方向" => "並べ替え操作の左右クリックの機能を反転",
                         "启用调试日志"       => "デバッグログを有効にする",
+                        "单价"               => "単価",
+                        "显示单价信息"       => "単価情報を表示",
 
                         _ => buttonType
                     };
@@ -101,7 +107,8 @@ namespace DuckSort.Utils
                         "显示价重比信息"     => "Preis-Gewichts-Verhältnis-Information anzeigen",
                         "交换左右键排序方向" => "Links-/Rechtsklick-Sortierrichtung tauschen",
                         "启用调试日志"       => "Debug-Log aktivieren",
-
+                        "单价"               => "Einzelpreis",
+                        "显示单价信息"       => "Einzelpreis anzeigen",
 
                         _ => buttonType
                     };
@@ -126,6 +133,9 @@ namespace DuckSort.Utils
                         "显示价重比信息"     => "Показать информацию о Ц/В",
                         "交换左右键排序方向" => "Поменять местами направление сортировки левой и правой кнопок",
                         "启用调试日志"       => "Включить журнал отладки",
+                        "单价"               => "Цена за единицу",
+                        "显示单价信息"       => "Показать информацию о цене за единицу",
+
 
                         _ => buttonType
                     };
@@ -150,6 +160,9 @@ namespace DuckSort.Utils
                         "显示价重比信息"     => "Mostrar información de relación precio-peso",
                         "交换左右键排序方向" => "Intercambiar la dirección de orden con los clics izquierdo y derecho",
                         "启用调试日志"       => "Habilitar registro de depuración",
+                        "单价"               => "Precio unitario",
+                        "显示单价信息"       => "Mostrar información del precio unitario",
+
 
                         _ => buttonType
                     };
@@ -174,6 +187,9 @@ namespace DuckSort.Utils
                         "显示价重比信息"     => "가격/무게 비율 정보 표시",
                         "交换左右键排序方向" => "좌우 클릭 정렬 방향 전환",
                         "启用调试日志"       => "디버그 로그 활성화",
+                        "单价"               => "단가",
+                        "显示单价信息"       => "단가 정보 표시",
+
 
                         _ => buttonType
                     };
@@ -198,6 +214,8 @@ namespace DuckSort.Utils
                         "显示价重比信息"     => "Afficher les informations du rapport valeur/poids",
                         "交换左右键排序方向" => "Inverser la direction de tri des clics gauche/droite",
                         "启用调试日志"       => "Activer le journal de débogage",
+                        "单价"               => "Unitaire",
+                        "显示单价信息"       => "Afficher les informations sur le prix unitaire",
 
                         _ => buttonType
                     };
@@ -222,6 +240,8 @@ namespace DuckSort.Utils
                         "显示价重比信息"     => "Mostrar informações de relação V/P",
                         "交换左右键排序方向" => "Inverter a direção de ordenação dos cliques esquerdo/direito",
                         "启用调试日志"       => "Ativar registro de depuração",
+                        "单价"               => "Preço unitário",
+                        "显示单价信息"       => "Mostrar informações de preço unitário",
 
                         _ => buttonType
                     };
@@ -247,6 +267,8 @@ namespace DuckSort.Utils
                         "显示价重比信息"     => "Show Price-to-Weight Info",
                         "交换左右键排序方向" => "Swap left and right click sorting direction",
                         "启用调试日志"       => "Enable debug log",
+                        "单价"               => "Unit Price",
+                        "显示单价信息"       => "Show unit price info",
 
                         _ => buttonType
                     };

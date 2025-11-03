@@ -84,6 +84,22 @@ namespace DuckSort.UI
                     },
                      () => ModConfig.ShowRatioText
                  ));
+
+            entries.Add(new TextEntry(
+                     "单价",
+                     item => {
+                         if (item.StackCount <= 0)
+                         {
+                             ModLogger.Error("堆叠数小于等于0什么鬼");
+                             return "";
+                         }
+                         var name = L10n.GetLabel("单价");
+                         float v = item.GetTotalRawValue() / 2 / item.StackCount;
+                         ModLogger.Debug($"计算单价: 总价值={item.GetTotalRawValue() / 2}, 堆叠数={item.StackCount}, 单价={v}");
+                         return $"{name}: ${v}";
+                    },
+                     () => ModConfig.ShowUnitPriceText
+                 ));
             
              ItemHoveringUI.onSetupItem += OnSetupItemHoveringUI;
              ItemHoveringUI.onSetupMeta += OnSetupMeta;
