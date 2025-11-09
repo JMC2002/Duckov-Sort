@@ -363,3 +363,4 @@ MigrationBackup/
 FodyWeavers.xsd
 *.zip
 /Properties/launchSettings.json
+*.rar
