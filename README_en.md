@@ -47,10 +47,10 @@ After playing the game for a while, I wanted to sort items by price or weight to
 -  This mod heavily relies on reflection, so it may become incompatible after future game updates.
 
 ## 🧭 5. TODO
-- Currently, the mod sorts in descending order by default. I may add an ascending/descending toggle button in the future.
-- The UI is quite basic at the moment and may be improved in the future.
-- A configuration menu may be added to quickly enable/disable certain features.
-- The code is a bit rough at the moment and will likely be optimized in the future.
-- The sorting seems a bit slow, and I will look into performance optimization later.
+- Currently, the mod sorts in descending order by default. I may add an ascending/descending toggle button in the future. ✔️
+- The UI is quite basic at the moment and may be improved in the future. ✔️
+- A configuration menu may be added to quickly enable/disable certain features. ✔️
+- The code is a bit rough at the moment and will likely be optimized in the future. ✔️
+- The sorting seems a bit slow, and I will look into performance optimization later. ✔️
 
 **If you like this Mod, please consider giving it a thumbs-up!**
