@@ -1,4 +1,7 @@
-﻿using DuckSort.Utils;
+﻿using Duckov.Modding;
+using DuckSort.Utils;
+using System;
+using System.Linq.Expressions;
 
 namespace DuckSort.Core
 {
@@ -10,10 +13,43 @@ namespace DuckSort.Core
         private static bool initialized = false;
         private const string ModName = VersionInfo.Name;
 
+        public static bool AddBoolDropdownList(Expression<Func<bool>> expr, string description, string? key = null)
+        {
+            try
+            {
+                return ModConfigAPI.SafeAddBoolDropdownList(
+                        ModName,
+                        expr.Body is MemberExpression m ? m.Member.Name : "unknown",
+                        L10n.GetLabel(description),
+                        expr.Compile().Invoke());
+            }
+            catch (Exception ex)
+            {
+                ModLogger.Error($"添加按钮\"{description}\"时出现问题", ex);
+                return false;
+            }
+        }
+
         public static void Init()
         {
             if (initialized) return;
+            // 首次尝试初始化，若Config在这个MOD前加载会触发
+            ModConfigAPI.Initialize();
+            // 当任意 Mod 启用时尝试与 ModConfig 连接
+            ModManager.OnModActivated += TryInitModConfig;
             initialized = true;
+        }
+
+        public static void Dispose()
+        {
+            initialized = false;
+            ModManager.OnModActivated -= TryInitModConfig;
+        }
+
+        public static void TryInitModConfig(ModInfo info, Duckov.Modding.ModBehaviour behaviour)
+        {
+            if (info.name != ModConfigAPI.ModConfigName || !ModConfigAPI.Initialize())
+                return;
 
             if (!ModConfigAPI.IsAvailable())
             {
@@ -24,20 +60,20 @@ namespace DuckSort.Core
             ModLogger.Info("检测到 ModConfig，正在注册配置项...");
 
             // === 注册布尔配置项 ===
-            ModConfigAPI.SafeAddBoolDropdownList(ModName, nameof(ModConfig.ShowPriceButton),      L10n.GetLabel("显示价格按钮"),       ModConfig.ShowPriceButton);
-            ModConfigAPI.SafeAddBoolDropdownList(ModName, nameof(ModConfig.ShowWeightButton),     L10n.GetLabel("显示重量按钮"),       ModConfig.ShowWeightButton);
-            ModConfigAPI.SafeAddBoolDropdownList(ModName, nameof(ModConfig.ShowRatioButton),      L10n.GetLabel("显示价重比按钮"),     ModConfig.ShowRatioButton);
-            ModConfigAPI.SafeAddBoolDropdownList(ModName, nameof(ModConfig.ShowQualityButton),    L10n.GetLabel("显示稀有度按钮"),     ModConfig.ShowQualityButton);
-            ModConfigAPI.SafeAddBoolDropdownList(ModName, nameof(ModConfig.ShowUnitPriceButton),  L10n.GetLabel("显示单价按钮"),       ModConfig.ShowUnitPriceButton);
-            ModConfigAPI.SafeAddBoolDropdownList(ModName, nameof(ModConfig.ShowIDButton),         L10n.GetLabel("显示ID按钮"),         ModConfig.ShowIDButton);
-            ModConfigAPI.SafeAddBoolDropdownList(ModName, nameof(ModConfig.ShowPriceText),        L10n.GetLabel("显示价格信息"),       ModConfig.ShowPriceText);
-            ModConfigAPI.SafeAddBoolDropdownList(ModName, nameof(ModConfig.ShowRatioText),        L10n.GetLabel("显示价重比信息"),     ModConfig.ShowRatioText);
-            ModConfigAPI.SafeAddBoolDropdownList(ModName, nameof(ModConfig.ShowUnitPriceText),    L10n.GetLabel("显示单价信息"),       ModConfig.ShowUnitPriceText);
-            ModConfigAPI.SafeAddBoolDropdownList(ModName, nameof(ModConfig.DefaultSortAscending), L10n.GetLabel("交换左右键排序方向"), ModConfig.DefaultSortAscending);
-            ModConfigAPI.SafeAddBoolDropdownList(ModName, nameof(ModConfig.EnableDebugLogs),      L10n.GetLabel("启用调试日志"),       ModConfig.EnableDebugLogs);
+            AddBoolDropdownList(() => ModConfig.ShowPriceButton,      "显示价格按钮");
+            AddBoolDropdownList(() => ModConfig.ShowWeightButton,     "显示重量按钮");
+            AddBoolDropdownList(() => ModConfig.ShowRatioButton,      "显示价重比按钮");
+            AddBoolDropdownList(() => ModConfig.ShowQualityButton,    "显示稀有度按钮");
+            AddBoolDropdownList(() => ModConfig.ShowUnitPriceButton,  "显示单价按钮");
+            AddBoolDropdownList(() => ModConfig.ShowIDButton,         "显示ID按钮");
+            AddBoolDropdownList(() => ModConfig.ShowPriceText,        "显示价格信息");
+            AddBoolDropdownList(() => ModConfig.ShowRatioText,        "显示价重比信息");
+            AddBoolDropdownList(() => ModConfig.ShowUnitPriceText,    "显示单价信息");
+            AddBoolDropdownList(() => ModConfig.DefaultSortAscending, "交换左右键排序方向");
+            AddBoolDropdownList(() => ModConfig.EnableDebugLogs,      "启用调试日志");
 
             // === 从 ModConfig API 载入已保存的设置（覆盖本地） ===
-            SyncFromModConfigAPI();
+            // SyncFromModConfigAPI();
 
             // === 注册事件回调 ===
             ModConfigAPI.SafeAddOnOptionsChangedDelegate(OnOptionChanged);
