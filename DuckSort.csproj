@@ -10,14 +10,6 @@
 
     <!-- Mod名称，默认与项目名称相同 -->
     <ModName>$(MSBuildProjectName)</ModName>
-    <!-- 项目根目录下的 Mods 文件夹 -->
-    <ModLocalDir>$(ProjectDir)$(ModName)</ModLocalDir>
-    <!-- 游戏 Mods 文件夹 -->
-    <ModGameDir>$(DuckovModPath)$(ModName)</ModGameDir>
-    <!-- 创意工坊文件夹 -->
-    <SteamWorkShop>D:\SteamLibrary\steamapps\workshop\content\3167020</SteamWorkShop>
-    <!-- 存放版本信息的文件，提取形如Version = x.x.x的信息 -->
-    <ModVersionFile>$(ProjectDir)Core\VersionInfo.cs</ModVersionFile>
     <!-- 自定义构建参数，默认不开启全量复制 -->
     <ForceCopy>false</ForceCopy>
 
@@ -30,6 +22,14 @@
 
     <!-- Managed DLL目录 -->
     <DuckovModPath>$(DuckovPath)\Duckov_Data\Mods\</DuckovModPath>
+    <!-- 项目根目录下的 Mods 文件夹 -->
+    <ModLocalDir>$(ProjectDir)$(ModName)</ModLocalDir>
+    <!-- 游戏 Mods 文件夹 -->
+    <ModGameDir>$(DuckovModPath)$(ModName)</ModGameDir>
+    <!-- 创意工坊文件夹 -->
+    <SteamWorkShop>D:\SteamLibrary\steamapps\workshop\content\3167020</SteamWorkShop>
+    <!-- 存放版本信息的文件，提取形如Version = x.x.x的信息 -->
+    <ModVersionFile>$(ProjectDir)Core\VersionInfo.cs</ModVersionFile>
     <Configurations>Debug;Release</Configurations>
 
   </PropertyGroup>
