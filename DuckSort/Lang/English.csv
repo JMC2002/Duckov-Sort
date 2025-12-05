@@ -1,0 +1,20 @@
+Key,Value
+按价值,Value
+按重量,Weight
+按价重比,Val/Weight
+价重比,Val/Weight
+按稀有度,Rarity
+按单价,Unit Price
+按ID,By ID
+显示稀有度按钮,Show Rarity Button
+显示单价按钮,Show Unit Price Button
+显示价格按钮,Show Price Button
+显示重量按钮,Show Weight Button
+显示价重比按钮,Show Price-to-Weight Button
+显示ID按钮,Show ID Button
+显示价格信息,Show Price Info
+显示价重比信息,Show Price-to-Weight Info
+交换左右键排序方向,Swap Left/Right Click Sorting Direction
+启用调试日志,Enable Debug Log
+单价,Unit Price
+显示单价信息,Show Unit Price Info

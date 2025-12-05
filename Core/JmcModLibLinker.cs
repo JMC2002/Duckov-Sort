@@ -1,12 +1,6 @@
-﻿using DuckSort.Utils;
-using JmcModLib.Core;
-using JmcModLib.Utils;
+﻿using JmcModLib.Core;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Xml.Linq;
-using Unity.VisualScripting;
 
 namespace DuckSort.Core
 {
@@ -20,8 +14,9 @@ namespace DuckSort.Core
             if (hasLib)
             {
                 JmcModLib.Utils.ModLogger.Debug("Setup");
-                ModRegistry.Register(VersionInfo.Name, VersionInfo.Version);
-                JmcModLib.Utils.L10n.Register();
+                ModRegistry.Register(true, VersionInfo.modinfo, VersionInfo.Name, VersionInfo.Version)?
+                           .RegisterL10n()
+                           .Done();
                 JmcModLib.Utils.ModLogger.Debug("退出Setup");
             }
             else

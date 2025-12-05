@@ -27,7 +27,7 @@
     <!-- 游戏 Mods 文件夹 -->
     <ModGameDir>$(DuckovModPath)$(ModName)</ModGameDir>
     <!-- 创意工坊文件夹 -->
-    <SteamWorkShop>D:\SteamLibrary\steamapps\workshop\content\3167020</SteamWorkShop>
+    <SteamWorkShop>D:\SteamLibrary\steamapps\workshop\content\3167020\</SteamWorkShop>
     <!-- 存放版本信息的文件，提取形如Version = x.x.x的信息 -->
     <ModVersionFile>$(ProjectDir)Core\VersionInfo.cs</ModVersionFile>
     <Configurations>Debug;Release</Configurations>
@@ -43,6 +43,10 @@
     <Reference Include="JmcModLib">
       <HintPath>$(DuckovModPath)JmcModLib\JmcModLib.dll</HintPath>
     </Reference>
+    <Reference Include="JmcModLib">
+      <HintPath>$(SteamWorkShop)JmcModLib\JmcModLib.dll</HintPath>
+    </Reference>
+    
     <Reference Include="$(DuckovManagedPath)\Unity*" />
   </ItemGroup>
   

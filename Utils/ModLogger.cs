@@ -58,18 +58,24 @@ namespace DuckSort.Utils
         }
     }
 
-
-    // 用于测量代码块执行时间的辅助类。
-    // 使用方法：
-    //    void SortInventory(Inventory inventory, Comparison<Item> comparison)
-    //    {
-    //        using (new ScopedTimer("SortInventory"))
-    //        {
-    //            var items = inventory.GetItems();
-    //            items.Sort(comparison);
-    //            // ...
-    //        }
-    //    }
+    /// <summary>
+    /// 用于测量代码块执行时间的辅助类。
+    /// 
+    /// <example>
+    /// 使用示例：
+    /// <code>
+    /// void SortInventory(Inventory inventory, Comparison&lt;Item> comparison)
+    /// {
+    ///     using (new ScopedTimer("SortInventory"))
+    ///     {
+    ///         var items = inventory.GetItems();
+    ///         items.Sort(comparison);
+    ///         // ...
+    ///     }
+    /// }
+    /// </code>
+    /// </example>
+    /// </summary>
     public sealed class ScopedTimer : System.IDisposable
     {
         private readonly string _label;

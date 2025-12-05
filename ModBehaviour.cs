@@ -2,6 +2,9 @@
 using DuckSort.Patches;
 using DuckSort.UI;
 using DuckSort.Utils;
+using SodaCraft.Localizations;
+using System;
+using UnityEngine;
 
 namespace DuckSort
 {
@@ -11,30 +14,26 @@ namespace DuckSort
         public AddText addText = new();
 
         private HarmonyHelper harmonyHelper = new("CustomSortButtons");
-
-        void Awake()
+        protected override void OnAfterSetup()
         {
-        }
-        void OnEnable()
-        {
-            ModConfig.Load();
-            ModConfigLinker.Init();
             ModLogger.Info("模组已启用");
+            ModConfig.Load();
+            Core.VersionInfo.modinfo = info;
+            Core.JmcModLibLinker.Setup();
+            ModSettingLinker.Init(info);
+            ModConfigLinker.Init();
 
             addText.Enable();
             harmonyHelper.OnEnable();
         }
 
-        void OnDestroy()
+        protected virtual void OnBeforeDeactivate()
         {
-        }
-
-        void OnDisable()
-        {
+            ModConfig.Save();
+            ModSettingLinker.Dispose();
+            ModConfigLinker.Dispose();
             addText.Disable();
             harmonyHelper.OnDisable();
-
-            ModConfig.Save();
             ModLogger.Info("Mod 已禁用，配置已保存");
         }
     }

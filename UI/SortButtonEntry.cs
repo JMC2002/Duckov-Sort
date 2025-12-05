@@ -10,7 +10,7 @@ using UnityEngine.UI;
 
 namespace DuckSort.UI
 {
-    public class SortButtonEntry
+    public class SortButtonEntry : MonoBehaviour
     {
         public string OrientedLabel { get; }    // 源文本，显示的是本地化的
         public string Label;
@@ -67,7 +67,7 @@ namespace DuckSort.UI
             }
 
             var btn = newGO.GetComponent<Button>();
-            btn.onClick.RemoveAllListeners();   
+            btn.onClick.RemoveAllListeners();
             btn.onClick.AddListener(OnClick);
 
 
@@ -83,84 +83,88 @@ namespace DuckSort.UI
 
         private void SortInventory(Inventory inventory, Comparison<Item> comparison, bool ascending)
         {
-            // 判断是否正在加载，防止重复操作
-            if (inventory.Loading)
+            using (new ScopedTimer("SortInventory"))
             {
-                return;
-            }
-
-            inventory.Loading = true;
-
-            ModLogger.Info($"开始对库存按{Tag}进行排序，当前为{(ascending ? "升序" : "降序")}排序");
-
-            var content = ReflectionHelper.GetFieldValue<List<Item>>(inventory, "content");
-            if (content == null)
-            {
-                ModLogger.Warn("无法获取 Inventory.content，排序失败");
-                inventory.Loading = false;
-                return;
-            }
-
-            // 先筛选掉被锁定的 Item，并将其加入 list
-            List<Item> list = new List<Item>();
-            for (int i = 0; i < content.Count; i++)
-            {
-                if (!inventory.IsIndexLocked(i))
+                // 判断是否正在加载，防止重复操作
+                if (inventory.Loading)
                 {
-                    Item item = content[i];
-                    if (item != null)
+                    return;
+                }
+
+                inventory.Loading = true;
+
+                ModLogger.Info($"开始对库存按{Tag}进行排序，当前为{(ascending ? "升序" : "降序")}排序");
+
+                var content = ReflectionHelper.GetFieldValue<List<Item>>(inventory, "content");
+                if (content == null)
+                {
+                    ModLogger.Warn("无法获取 Inventory.content，排序失败");
+                    inventory.Loading = false;
+                    return;
+                }
+
+                // 先筛选掉被锁定的 Item，并将其加入 list
+                List<Item> list = new();
+                for (int i = 0; i < content.Count; i++)
+                {
+                    if (!inventory.IsIndexLocked(i))
                     {
-                        item.Detach();
-                        list.Add(item);
+                        Item item = content[i];
+                        if (item != null)
+                        {
+                            item.Detach();
+                            list.Add(item);
+                        }
                     }
                 }
-            }
 
-            // 按 TypeID 分组，并进行 TryMerge 操作
-            List<IGrouping<int, Item>> groupedItems = list.GroupBy(item => item.TypeID).ToList();
-            var sortedItems = new List<Item>();
+                // 按 TypeID 分组，并进行 TryMerge 操作
+                List<IGrouping<int, Item>> groupedItems = list.GroupBy(item => item.TypeID).ToList();
+                var sortedItems = new List<Item>();
 
-            // 备注：此处目前为性能热点，800物品约需50ms
-            foreach (var group in groupedItems)
-            {
-                // 如果不可堆叠，直接添加到 sortedItems
-                if (!group.First<Item>().Stackable)
+                // 备注：此处目前为性能热点，800物品约需50ms
+                foreach (var group in groupedItems)
                 {
-                    sortedItems.AddRange(group);
-                    continue;
+                    // 如果不可堆叠，直接添加到 sortedItems
+                    if (!group.First<Item>().Stackable)
+                    {
+                        sortedItems.AddRange(group);
+                        continue;
+                    }
+
+                    // 使用反射调用 TryMerge
+                    var args = new object[] { group, null! };
+                    bool success = ReflectionHelper.CallStaticMethodWithOut(
+                        typeof(Inventory),
+                        "TryMerge",
+                        args,
+                        out List<Item>? mergedItems
+                    );
+
+                    // 如果合并成功，添加到 sortedItems
+                    sortedItems.AddRange(mergedItems ?? group.ToList());
                 }
 
-                // 使用反射调用 TryMerge
-                var args = new object[] { group, null! };
-                bool success = ReflectionHelper.CallStaticMethodWithOut(
-                    typeof(Inventory),
-                    "TryMerge",
-                    args,
-                    out List<Item>? mergedItems
-                );
+                // 根据 Comparison 排序
+                sortedItems.Sort((a, b) =>
+                {
+                    int result = comparison(a, b) * (ascending ? -1 : 1);         // 先按原有规则排序
+                    return result != 0 ? result : a.TypeID.CompareTo(b.TypeID); // 若相等则按 TypeID 比较，保证相同的 Item 放一起
+                });
 
-                // 如果合并成功，添加到 sortedItems
-                sortedItems.AddRange(mergedItems ?? group.ToList());
+                // 备注：此处目前为性能热点，800物品约需50ms
+                foreach (var item in sortedItems)
+                {
+                    inventory.AddItem(item);
+                }
+
+                inventory.Loading = false;
+
+                // 通过反射获取事件的委托，并手动调用
+                var onSorted = ReflectionHelper.GetFieldValue<Action<Inventory>>(inventory, "onInventorySorted");
+                onSorted?.Invoke(inventory);
+                ModLogger.Info($"库存按{Tag}排序完成。");
             }
-
-            // 根据 Comparison 排序
-            sortedItems.Sort((a, b) =>
-            {
-                int result = comparison(a, b) * (ascending ? -1 : 1);         // 先按原有规则排序
-                return result != 0 ? result : a.TypeID.CompareTo(b.TypeID); // 若相等则按 TypeID 比较，保证相同的 Item 放一起
-            });
-
-            // 备注：此处目前为性能热点，800物品约需50ms
-            foreach (var item in sortedItems)
-            {
-                inventory.AddItem(item);
-            }
-
-            inventory.Loading = false;
-            // 通过反射获取事件的委托，并手动调用
-            var eventDelegate = ReflectionHelper.GetFieldValue<Action<Inventory>>(inventory, "onInventorySorted");
-            eventDelegate?.Invoke(inventory);
-            ModLogger.Info($"库存按{Tag}排序完成。");
         }
     }
 

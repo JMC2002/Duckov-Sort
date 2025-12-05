@@ -42,3 +42,5 @@
 有意见和建议欢迎大家在讨论区留言或者github提issue，更新日志可以点击右上角“[url=https://steamcommunity.com/sharedfiles/filedetails/changelog/3592004817] 改动说明 [/url]”查看。
 
 [b] 如果你喜欢这个 Mod 的话，希望可以点一下好评~[/b]
+
+[b] 可以使用我的代码，但最起码在评论区告诉我一声，并在简介注明这个MOD的创意工坊 [/b]
