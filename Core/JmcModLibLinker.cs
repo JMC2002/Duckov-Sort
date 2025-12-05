@@ -16,6 +16,7 @@ namespace DuckSort.Core
                 JmcModLib.Utils.ModLogger.Debug("Setup");
                 ModRegistry.Register(true, VersionInfo.modinfo, VersionInfo.Name, VersionInfo.Version)?
                            .RegisterL10n()
+                           .RegisterLogger()
                            .Done();
                 JmcModLib.Utils.ModLogger.Debug("退出Setup");
             }

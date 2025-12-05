@@ -2,6 +2,8 @@
 using System.IO;
 using UnityEngine;
 using DuckSort.Utils;
+using JmcModLib.Config;
+using JmcModLib.Config.UI;
 
 namespace DuckSort.Core
 {
@@ -23,60 +25,80 @@ namespace DuckSort.Core
         private static bool _enableDebugLogs = false;
 
         // === 公共属性（统一通过 Set<T> 触发保存与事件） ===
+        [UIToggle]
+        [Config("显示价格按钮")]
         public static bool ShowPriceButton
         {
             get => _showPriceButton;
             set => Set(ref _showPriceButton, value);
         }
 
+        [UIToggle]
+        [Config("显示重量按钮")]
         public static bool ShowWeightButton
         {
             get => _showWeightButton;
             set => Set(ref _showWeightButton, value);
         }
 
+        [UIToggle]
+        [Config("显示价重比按钮")]
         public static bool ShowRatioButton
         {
             get => _showRatioButton;
             set => Set(ref _showRatioButton, value);
         }
 
+        [UIToggle]
+        [Config("显示稀有度按钮")]
         public static bool ShowQualityButton
         {
             get => _showQualityButton;
             set => Set(ref _showQualityButton, value);
         }
 
+        [UIToggle]
+        [Config("显示单价按钮")]
         public static bool ShowUnitPriceButton
         {
             get => _showUnitPriceButton;
             set => Set(ref _showUnitPriceButton, value);
         }
-
+        
+        [UIToggle]
+        [Config("显示ID按钮")]
         public static bool ShowIDButton
         {
             get => _showIDButton;
             set => Set(ref _showIDButton, value);
         }
 
+        [UIToggle]
+        [Config("显示价格信息")]
         public static bool ShowPriceText
         {
             get => _showPriceText;
             set => Set(ref _showPriceText, value);
         }
 
+        [UIToggle]
+        [Config("显示价重比信息")]
         public static bool ShowRatioText
         {
             get => _showRatioText;
             set => Set(ref _showRatioText, value);
         }
 
+        [UIToggle]
+        [Config("显示单价信息")]
         public static bool ShowUnitPriceText
         {
             get => _showUnitPriceText;
             set => Set(ref _showUnitPriceText, value);
         }
 
+        [UIToggle]
+        [Config("交换左右键排序方向")]
         public static bool DefaultSortAscending
         {
             get => _defaultSortAscending;

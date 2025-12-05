@@ -20,7 +20,7 @@ namespace DuckSort
             ModConfig.Load();
             Core.VersionInfo.modinfo = info;
             Core.JmcModLibLinker.Setup();
-            ModSettingLinker.Init(info);
+            // ModSettingLinker.Init(info);
             ModConfigLinker.Init();
 
             addText.Enable();
@@ -30,7 +30,7 @@ namespace DuckSort
         protected virtual void OnBeforeDeactivate()
         {
             ModConfig.Save();
-            ModSettingLinker.Dispose();
+            // ModSettingLinker.Dispose();
             ModConfigLinker.Dispose();
             addText.Disable();
             harmonyHelper.OnDisable();

@@ -1,5 +1,7 @@
 ﻿using DuckSort.Core;
 using System;
+using System.Reflection;
+
 
 // using System.Diagnostics;
 using System.Runtime.CompilerServices;
@@ -16,10 +18,12 @@ namespace DuckSort.Utils
             [CallerFilePath] string file = "",
             [CallerLineNumber] int line = 0)
         {
-            if (!EnableDebug)
-                return;
+            JmcModLib.Utils.ModLogger.Debug(message, Assembly.GetExecutingAssembly(), caller, file, line);
+            return;
+            //if (!EnableDebug)
+            //    return;
 
-            UnityEngine.Debug.Log(Format("DEBUG", message, caller, file, line));
+            //UnityEngine.Debug.Log(Format("DEBUG", message, caller, file, line));
         }
 
         // 输出普通信息日志。
@@ -28,7 +32,9 @@ namespace DuckSort.Utils
             [CallerFilePath] string file = "",
             [CallerLineNumber] int line = 0)
         {
-            UnityEngine.Debug.Log(Format("INFO", message, caller, file, line));
+            JmcModLib.Utils.ModLogger.Info(message, Assembly.GetExecutingAssembly(), caller, file, line);
+
+            // UnityEngine.Debug.Log(Format("INFO", message, caller, file, line));
         }
 
         // 输出警告日志。
@@ -37,7 +43,9 @@ namespace DuckSort.Utils
             [CallerFilePath] string file = "",
             [CallerLineNumber] int line = 0)
         {
-            UnityEngine.Debug.LogWarning(Format("WARN", message, caller, file, line));
+            JmcModLib.Utils.ModLogger.Warn(message, null, Assembly.GetExecutingAssembly(), caller, file, line);
+
+            // UnityEngine.Debug.LogWarning(Format("WARN", message, caller, file, line));
         }
 
         // 输出错误日志。
@@ -46,7 +54,9 @@ namespace DuckSort.Utils
             [CallerFilePath] string file = "",
             [CallerLineNumber] int line = 0)
         {
-            UnityEngine.Debug.LogError(Format("ERROR", message + (ex != null ? $"\n{ex}" : ""), caller, file, line));
+            JmcModLib.Utils.ModLogger.Error(message, ex, Assembly.GetExecutingAssembly(), caller, file, line);
+
+            // UnityEngine.Debug.LogError(Format("ERROR", message + (ex != null ? $"\n{ex}" : ""), caller, file, line));
         }
 
         // 格式化输出文本，包含时间、版本信息。
